@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Navbar = () => {
+function About() {
   return (
     <div>
-      
+      svahcvchsbh
     </div>
   )
 }
 
-export default Navbar
+export default About

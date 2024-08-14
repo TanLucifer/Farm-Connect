@@ -1,24 +1,13 @@
 import React from 'react';
+import './Home.css';
+import { Link } from 'react-router-dom';
+import Navbar from '../../components/UserNavbar/Navbar';
 
 const FarmConnect = () => {
   return (
     <div className="min-h-screen bg-green-50">
-      <header className="bg-white shadow-md fixed w-full z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-green-800">FarmConnect</h1>
-            <div className="hidden md:flex space-x-6">
-              <a href="#" className="text-green-700 hover:text-green-900">Home</a>
-              <a href="#" className="text-green-700 hover:text-green-900">Products</a>
-              <a href="#" className="text-green-700 hover:text-green-900">About Us</a>
-              <a href="#" className="text-green-700 hover:text-green-900">Contact</a>
-            </div>
-            <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
-              Login
-            </button>
-          </nav>
-        </div>
-      </header>
+      <Navbar/>
+      
 
       <main>
         <section className="relative bg-cover bg-center h-screen flex items-center" style={{backgroundImage: "url('https://source.unsplash.com/random/1920x1080?farm,harvest')"}}>
