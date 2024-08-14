@@ -31,15 +31,15 @@ const userSchema = new mongoose.Schema({
     },
     bankAccName: {
         type: String,
-        uppercase: true, // Correct placement
+        uppercase: true,
     },
     bankName: {
         type: String,
-        uppercase: true, // Correct placement
+        uppercase: true, 
     },
     bankBranch: {
         type: String,
-        uppercase: true, // Correct placement
+        uppercase: true, 
     },
     IFSC_code: {
         type: String, 

@@ -31,3 +31,5 @@ default:0
 },{
     timestamps:true
 })
+
+export const adminCollection =  mongoose.model("Admin",adminSchema)
