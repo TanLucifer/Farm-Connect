@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/logo.png';
 
 const Navbar = () => {
   return (
@@ -7,7 +8,7 @@ const Navbar = () => {
       <header className="bg-[#151c1fff] shadow-md fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-green-800">FarmConnect</h1>
+            <img src={logo} style={{height:'9vh'}}alt="" />
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-white hover:text-green-900">Home</Link>
               <Link to="/" className="text-white hover:text-green-900">Products</Link>
