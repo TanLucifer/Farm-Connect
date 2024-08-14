@@ -14,7 +14,7 @@ const FarmConnect = () => {
               <a href="#" className="text-green-700 hover:text-green-900">Contact</a>
             </div>
             <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
-              Connect Store
+              Login
             </button>
           </nav>
         </div>
