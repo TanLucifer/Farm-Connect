@@ -3,12 +3,11 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/UserNavbar/Navbar';
 
+
 const FarmConnect = () => {
   return (
     <div className="min-h-screen bg-green-50">
-      <Navbar/>
-      
-
+    <Navbar />
       <main>
         <section className="relative bg-cover bg-center h-screen flex items-center" style={{backgroundImage: "url('https://source.unsplash.com/random/1920x1080?farm,harvest')"}}>
           <div className="absolute inset-0 bg-black opacity-50"></div>
