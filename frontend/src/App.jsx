@@ -8,6 +8,7 @@ import About from './User/pages/About/About';
 import Cart from './User/pages/Cart/Cart';
 import Order from './User/pages/Cart/Order';
 import OrderStatus from './User/pages/Cart/OrderStatus';
+import Help from './User/pages/Help/Help';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="cart" element={< Cart />} />
           <Route path="order" element={<Order />} />
           <Route path="order" element={<Order />} />
+          <Route path="help" element={<Help />} />
           <Route path="orderStatus" element={<OrderStatus />} />
         </Route>
 
