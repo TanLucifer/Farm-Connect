@@ -10,6 +10,8 @@ import Cart from './User/pages/Cart/Cart';
 import Order from './User/pages/Cart/Order';
 import OrderStatus from './User/pages/Cart/OrderStatus';
 
+import Registration from "./Admin/Pages/Registration/Registration";
+
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="order" element={<Order />} />
           <Route path="order" element={<Order />} />
           <Route path="orderStatus" element={<OrderStatus />} />
+          <Route path="register" element={<Registration />} />
         </Route>
 
       </Routes>
