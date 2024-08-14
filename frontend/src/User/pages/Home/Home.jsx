@@ -1,15 +1,16 @@
 import React from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
-import Navbar from '../../components/UserNavbar/Navbar';
+import Homeill from '../../../assets/home_ill.png';
+import Background from '../../../assets/background.svg';
 
 
 const FarmConnect = () => {
   return (
     <div className="min-h-screen bg-green-50">
-    <Navbar />
+    {/* <Navbar /> */}
       <main>
-        <section className="relative bg-cover bg-center h-screen flex items-center" style={{backgroundImage: "url('https://source.unsplash.com/random/1920x1080?farm,harvest')"}}>
+        <section className="relative bg-cover bg-center h-screen flex items-center" style={{backgroundImage: `url(${Background})`}}>
           <div className="absolute inset-0 bg-black opacity-50"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -75,7 +76,7 @@ const FarmConnect = () => {
             <div className="flex flex-col lg:flex-row items-center">
               <div className="w-full lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
                 <div className="aspect-w-16 aspect-h-9 bg-green-200 rounded-lg shadow-md overflow-hidden">
-                  <img src="https://source.unsplash.com/random/800x600?vegetables" alt="Farm produce" className="object-cover" />
+                  <img src={Homeill} alt="Farm produce" className="object-cover" />
                 </div>
               </div>
               <div className="w-full lg:w-1/2">
@@ -99,7 +100,7 @@ const FarmConnect = () => {
         </section>
       </main>
 
-      <footer className="bg-green-800 text-white py-12">
+      {/* <footer className="bg-green-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -128,7 +129,7 @@ const FarmConnect = () => {
             <p className="text-green-200">&copy; 2024 FarmConnect. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
