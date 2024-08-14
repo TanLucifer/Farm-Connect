@@ -9,6 +9,7 @@ import About from './User/pages/About/About';
 import Cart from './User/pages/Cart/Cart';
 import Order from './User/pages/Cart/Order';
 import OrderStatus from './User/pages/Cart/OrderStatus';
+import Privacy from "./User/pages/Privacy/Privacy";
 
 import Registration from "./Admin/Pages/Registration/Registration";
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="order" element={<Order />} />
           <Route path="orderStatus" element={<OrderStatus />} />
           <Route path="register" element={<Registration />} />
+          <Route path="privacy" element={<Privacy />} />
         </Route>
 
       </Routes>
