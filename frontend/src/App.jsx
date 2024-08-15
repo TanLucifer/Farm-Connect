@@ -9,6 +9,7 @@ import Order from './User/pages/Cart/Order';
 import OrderStatus from './User/pages/Cart/OrderStatus';
 import Registration from './Admin/Pages/Registration/Registration';
 import ProductForm from './Admin/Pages/ProductForm/ProductForm';
+import AdminPanel from './Admin/Pages/Adminpanel';
 import ProtectedRoute from '../src/User/components/ProtectedRoute/ProtectedRoute.jsx'; // Adjust the path as necessary
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route index element={<Home />} /> {/* Public Route */}
           <Route path="auth" element={<Auth />} /> {/* Public Route */}
           <Route path="productform" element={<ProductForm />} />
+          <Route path="adminpanel" element={<AdminPanel />} />
           
           {/* Protected Routes */}
           <Route path="about" element={<ProtectedRoute element={<About />} />} />
