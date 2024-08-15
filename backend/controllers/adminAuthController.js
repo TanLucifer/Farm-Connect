@@ -50,43 +50,47 @@ export const createAdminController = async (req, res) => {
   }
 };
 export const loginAdminController = async (req, res) => {
-try {
-    const { admin_username, admin_password } = req.body;
-    
-    if (!admin_username ||!admin_password) {
-      return res.status(400).json({ message: 'Username and password are required.' });
+    try {
+      const { admin_username, admin_password } = req.body;
+      
+      // Check for missing fields
+      if (!admin_username || !admin_password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+      }
+      
+      // Find the admin by username
+      const admin = await Admin.findOne({ admin_username });
+      
+      // Check if admin exists
+      if (!admin) {
+        return res.status(401).json({ message: 'Invalid username or password.' });
+      }
+      
+      // Compare provided password with hashed password
+      const isMatch = await bcrypt.compare(admin_password, admin.admin_password);
+      
+      if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid username or password.' });
+      }
+      
+      // Generate a JWT token
+      const token = adminGenerateToken(admin);
+      
+      // Send cookie with the token
+      res.cookie('admin_access_token', token, {
+        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+      });
+      
+      // Respond with success message and admin data
+      res.json({ message: 'Admin logged in successfully.', admin });
+      
+    } catch (error) {
+      console.error('Error logging in admin:', error);
+      res.status(500).json({ message: 'Internal server error logging in admin.', error: error.message });
     }
-    
-    const admin = await Admin.findOne({ admin_username });
-    
-    if (!admin) {
-      return res.status(401).json({ message: 'Invalid username or password.' });
-    }
-    
-    const isMatch = await bcrypt.compare(admin_password, admin.admin_password);
-    
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid username or password.' });
-    }
-    
-    const token = adminGenerateToken(admin);
-    
-    res.cookie('admin_access_token', token, {
-      maxAge:15 * 24 * 60 * 60 * 1000, // 1 hour
-      httpOnly: true,
-      secure:process.env.NODE_ENV === 'production'
-    });
-    
-    res.json({ message: 'Admin logged in successfully.', admin });
-
-    
-} catch (error) {
-    console.error('Error logging in admin:', error);
-    res.status(500).json({ message: 'Internal server error logging in admin.', error: error.message });
-  }
-    
-};
-
+  };
 
 
 
