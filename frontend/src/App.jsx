@@ -21,7 +21,7 @@ const App = () => {
           <Route index element={<Home />} /> {/* Public Route */}
           <Route path="auth" element={<Auth />} /> {/* Public Route */}
 
-       
+          <Route path="adminpanel" element={<AdminPanel />} />
 
           {/* Protected Routes */}
           <Route path="about" element={<ProtectedRoute element={<About />} />} />
