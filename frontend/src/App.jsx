@@ -10,27 +10,33 @@ import OrderStatus from './User/pages/Cart/OrderStatus';
 import Registration from './Admin/Pages/Registration/Registration';
 import ProductForm from './Admin/Pages/ProductForm/ProductForm';
 import AdminPanel from './Admin/Pages/Adminpanel';
+import AdminLayout from './Admin/AdminLayout.jsx';
 import ProtectedRoute from '../src/User/components/ProtectedRoute/ProtectedRoute.jsx'; // Adjust the path as necessary
 
 const App = () => {
   return (
     <Router>
-      
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} /> {/* Public Route */}
           <Route path="auth" element={<Auth />} /> {/* Public Route */}
-          <Route path="productform" element={<ProductForm />} />
+
           <Route path="adminpanel" element={<AdminPanel />} />
-          
+
           {/* Protected Routes */}
           <Route path="about" element={<ProtectedRoute element={<About />} />} />
           <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="orderStatus" element={<ProtectedRoute element={<OrderStatus />} />} />
           <Route path="register" element={<ProtectedRoute element={<Registration />} />} />
-          
         </Route>
+        {/* Admin layout wise */}
+        <Route path="/admin" element={<AdminLayout />} />
+        <Route index element={<AdminPanel />} />
+        <Route path="productform" element={<ProductForm />} />
+        <Route path="register" element={<Registration />} />
+        <Route />
+        {/* Admin layout wise */}
       </Routes>
     </Router>
   );
