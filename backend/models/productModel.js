@@ -2,38 +2,44 @@ import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema(
   {
-    name: {
+    SKU:{
+    type: String,
+    required: true,
+    unique: true,
+    trim: true, 
+    },
+    productname: {
       type: String,
       required: true,
       trim: true, 
     },
-    price: {
+    productprice: {
       type: Number,
       required: true,
       min: 0,
     },
-    description: {
+    productdescription: {
       type: String,
       required: true,
       maxlength: 1000, 
     },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 0, 
-    },
     category: {
       type: String,
       required: true,
-      enum: ['Vegetables', 'Fruits', 'Dairy', 'Grains', 'Meat', 'Other'],
+      enum: ['Vegetables', 'Fruits', 'Dairy', 'Grains', 'Herbs', 'Other'],
     },
-    image: {
+    productImage: {
       type: String,
       required: true,
     },
-    isAvailable: {
-      type: Boolean,
-      default: true,
+    currency:{
+        type:String,
+        default:"INR"
+    },
+    stock: {
+      type: Number,
+      default: 100,
+      min:100
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -44,18 +50,7 @@ const productSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Farmer",
     },
-    farmLocation: {
-      type: String,
-      required: true,
-    },
-    organic: {
-      type: Boolean,
-      default: false,
-    },
-    harvestDate: {
-      type: Date,
-      required: true, 
-    },
+   
     shelfLife: {
       type: Number,
       required: true,
@@ -97,15 +92,31 @@ const productSchema = mongoose.Schema(
         },
       },
     ],
-    discount: {
+    discountpPrice: {
       type: Number,
-      min: 0,
-      max: 100, 
+      required: true,
+      default:0
+      
     },
-    views: {
-      type: Number,
-      default: 0, 
+    minOrder:{
+        type:Number,
+        min:100,
+        default:100
+    }
+    ,
+    maxOrder:{
+        type:Number,
+        min:10
     },
+    shippingCost:{
+        type: Number,
+        default:0
+    },
+    returnPolicy:{
+        type:String,
+        required: true,
+        enum:['1-2 daysAfterOrder','No damage','NotUsed']
+    }
   },
   {
     timestamps: true,
