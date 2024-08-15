@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const LoginForm = () => {
   return (
@@ -45,12 +46,12 @@ const LoginForm = () => {
               </label>
             </div>
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                to="/forgetpassword"
                 className="font-medium text-[#1a2226ff] "
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
           <button
