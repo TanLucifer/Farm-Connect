@@ -13,6 +13,7 @@ import ProtectedRoute from '../src/User/components/ProtectedRoute/ProtectedRoute
 const App = () => {
   return (
     <Router>
+      
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} /> {/* Public Route */}

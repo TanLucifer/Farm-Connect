@@ -1,6 +1,18 @@
 import mongoose from "mongoose";
-
 const farmerSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6,
+       
+    },
     fullName: {
         type: String,
         required: true,
@@ -36,8 +48,14 @@ const farmerSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid 10-digit phone number!`
         },
     },
+    products:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        default:[]
+    }],
     address: {
         type: String,
+        default: ''
     },
     bankName: {
         type: String,
@@ -64,14 +82,17 @@ const farmerSchema = new mongoose.Schema({
     IFSC_Code: {
         type: String,
     },
-    panCard:{
-        type:String,
+    panCard: {
+        type: String,
+        default: ''
     },
-    proofOfAddress:{
-        type:String,
+    proofOfAddress: {
+        type: String,
+        default: ''
     },
-    profilePic:{
-        type:String,
+    profilePic: {
+        type: String,
+        default: ''
     }
 }, {
     timestamps: true,
