@@ -11,6 +11,8 @@ import Registration from './Admin/Pages/Registration/Registration';
 import ProductForm from './Admin/Pages/ProductForm/ProductForm';
 import AdminPanel from './Admin/Pages/Adminpanel';
 import AdminLayout from './Admin/AdminLayout.jsx';
+import AdminLogin from './Admin/Pages/AdminLogin.jsx';
+import Error from './User/pages/Error/Error';
 import ProtectedRoute from '../src/User/components/ProtectedRoute/ProtectedRoute.jsx'; // Adjust the path as necessary
 
 const App = () => {
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} /> {/* Public Route */}
           <Route path="auth" element={<Auth />} /> {/* Public Route */}
+          <Route path="*" element={<Error/>} /> {/* Public Route */}
+          
 
           <Route path="adminpanel" element={<AdminPanel />} />
 
@@ -33,6 +37,7 @@ const App = () => {
         {/* Admin layout wise */}
         <Route path="/admin" element={<AdminLayout />} />
         <Route index element={<AdminPanel />} />
+        <Route path="aauth" element={<AdminLogin />} /> 
         <Route path="productform" element={<ProductForm />} />
         <Route path="register" element={<Registration />} />
         <Route />
