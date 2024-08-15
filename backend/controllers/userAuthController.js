@@ -46,13 +46,13 @@ export const signupController = async (req, res) => {
 
 export const loginController = async (req, res) => {
    try {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
 
-      if (!username || !password) {
+      if (!email || !password) {
          return res.status(400).json({ message: "All fields are required." });
       }
 
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ email });
       if (!user) {
          return res.status(400).json({ message: "User not found." });
       }
@@ -78,3 +78,27 @@ export const loginController = async (req, res) => {
       return res.status(500).json({ message: "Internal server error." });
    }
 };
+
+export const getMeController = async (req, res) => {
+   try {
+       const user = req.user;
+
+       if (!user) {
+           return res.status(404).json({ message: "User not found." });
+       }
+       return res.status(200).json(user);
+   } catch (error) {
+       console.error("Error in getMeController:", error.message);
+       return res.status(500).json({ message: "Internal server error." });
+   }
+};
+export const logoutController = async (req,res) =>{
+    try{
+        res.clearCookie("access_token", { path: "/" });
+        return res.status(200).json({ message: "Logged out successfully." });
+    } catch(error){
+        console.error("Error in logoutController:", error.message);
+        return res.status(500).json({ message: "Internal server error." });
+    }
+
+}
