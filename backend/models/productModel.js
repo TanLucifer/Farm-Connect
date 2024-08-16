@@ -116,7 +116,18 @@ const productSchema = mongoose.Schema(
         type:String,
         required: true,
         enum:['1-2 daysAfterOrder','No damage','NotUsed']
-    }
+    },
+    weight:{
+      type:Number,
+      min:1,
+      max:1000
+    },
+    status:{
+      type: String,
+      enum: ['Available', 'Out of Stock', 'Discontinued'],
+      default: 'Available'
+    },
+  
   },
   {
     timestamps: true,

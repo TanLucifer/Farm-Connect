@@ -8,6 +8,7 @@ import orderRouter from "../router/orderRouter.js"
 import { mongooseConn } from "../config/mongo-connection.js";
 import cookie from 'cookie-parser'
 import cors from 'cors'
+import path from "path"
 const app = express();
 
 env.config()
@@ -20,7 +21,7 @@ const port = process.env.PORT || 8000 ;
 mongooseConn(process.env.MONGO_URI)
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+app.use(express.static('../public'))
 app.use("/api/user/auth",userAuthRouter)
 app.use("/api/farmer/auth",farmerAuthRouter)
 app.use("/api/admin",createdAdmin)

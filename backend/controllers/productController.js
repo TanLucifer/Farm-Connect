@@ -20,22 +20,23 @@ export const createProductController = async (req,res)=>{
           returnPolicy,
          
         } = req.body;
+        console.log(req.body);
+        
+        const farmerId = "66be074e14caafd922277d4d"; 
     
-        const farmerId = req.farmer.id; 
-    
-        if (
-          !SKU ||
-          !productname ||
-          !productprice ||
-          !productdescription ||
-          !stock ||
-          !category ||
-          !productImage ||
-          !shelfLife ||
-          !returnPolicy
-        ) {
-          return res.status(400).json({ message: 'Missing required fields' });
-        }
+        // if (
+        //   !SKU ||
+        //   !productname ||
+        //   !productprice ||
+        //   !productdescription ||
+        //   !stock ||
+        //   !category ||
+          
+        //   !shelfLife ||
+        //   !returnPolicy
+        // ) {
+        //   return res.status(400).json({ message: 'Missing required fields' });
+        // }
     
         const farmer = await Farmer.findById(farmerId);
         if (!farmer) {
@@ -58,7 +59,8 @@ export const createProductController = async (req,res)=>{
           returnPolicy,
           createdBy: farmerId,
         });
-    
+         console.log(req.body);
+            
         await newProduct.save();
     
         res.status(201).json({ message: 'Product created successfully', product: newProduct });

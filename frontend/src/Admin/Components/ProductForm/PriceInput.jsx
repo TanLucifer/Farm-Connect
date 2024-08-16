@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const PriceInput = ({ label, value, onChange }) => (
+const PriceInput = forwardRef(({ label, value, onChange }, ref) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-gray-600 mb-1">{label}</label>
     <div className="relative">
       <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-600">₹</span>
       <input
+        ref={ref} // Forward the ref to the input element
         type="text"
         placeholder="0.00"
         value={value}
@@ -14,6 +15,6 @@ const PriceInput = ({ label, value, onChange }) => (
       />
     </div>
   </div>
-);
+));
 
 export default PriceInput;

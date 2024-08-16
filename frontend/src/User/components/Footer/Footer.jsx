@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/logo.png";
-// import googlePlay from "../../../assets/google-play.png";
+import googlePlay from "../../../assets/GooglePlay.png";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -38,9 +38,9 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="bg-[#1a73e8] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center hover:bg-blue-700 transition duration-300">
               <img
-                src=""
+                src={googlePlay}
                 alt="Google Play"
-                className="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3"
+                className="w-[5vw] h-6 sm:w-[4vw] sm:h-8 mr-2 sm:mr-3"
               />
               <span>
                 <div className="text-xs">GET IT ON</div>
@@ -62,7 +62,7 @@ const Footer = () => {
           <Link to="/faq" onClick={scrollToTop}>
             FAQ
           </Link>
-          <Link to="/aboutUs" onClick={scrollToTop}>
+          <Link to="/about" onClick={scrollToTop}>
             About Us
           </Link>
           <Link to="/contact" onClick={scrollToTop}>
@@ -74,8 +74,8 @@ const Footer = () => {
           <p className="font-thin text-center text-gray-400">CONSUMER POLICY</p>{" "}
           <hr />
           <br />
-          <Link to="/myOrders" onClick={scrollToTop}>
-            Order
+          <Link to="/cart" onClick={scrollToTop}>
+            Cart
           </Link>
           <Link to="/help" onClick={scrollToTop}>
             Help
@@ -83,17 +83,11 @@ const Footer = () => {
           <Link to="/privacy" onClick={scrollToTop}>
             Privacy Policy
           </Link>
-          <Link to="/returnAndCancellation" onClick={scrollToTop}>
+          <Link to="/return" onClick={scrollToTop}>
             Return and Cancellation
-          </Link>
-          <Link to="/EPR_Page" onClick={scrollToTop}>
-            EPR Compliance
           </Link>
           <Link to="/termsAndCondition" onClick={scrollToTop}>
             Terms & Conditions
-          </Link>
-          <Link to="/shipping" onClick={scrollToTop}>
-            shipping
           </Link>
         </div>
         <div className="flex flex-col justify-items-end items-start md:justify-center">
@@ -154,20 +148,20 @@ const Footer = () => {
             </p>
             <div className="social-icons">
               <a
-                href="https://www.instagram.com/vigybag/"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer">
                 <FaInstagram size={30} style={{ color: "#E4405F" }} />
               </a>
               <a
-                href="https://www.x.com"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer">
                 <BsTwitterX size={25} style={{ color: "#ffffff" }} />{" "}
                 {/* X color */}
               </a>
               <a
-                href="https://www.linkedin.com/posts/codervivek_startup-teamwork-innovation-activity-7211097005408890880-haWJ?"
+                href="/"
                 target="_blank">
                 <lord-icon
                   style={{
@@ -180,7 +174,7 @@ const Footer = () => {
                   trigger="hover"></lord-icon>
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61553496839072"
+                href="/"
                 target="_blank">
                 <lord-icon
                   style={{
@@ -205,7 +199,7 @@ const Footer = () => {
                   trigger="hover"></lord-icon>
               </a>
               <a
-                href="https://discord.com/invite/xujgQevyZ4"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer">
                 <FaDiscord size={30} />
@@ -216,12 +210,12 @@ const Footer = () => {
       </div>
       <br />
       <div className="footer-bottom text-sm">
-        <p>© {new Date().getFullYear()} VigyBag. All rights reserved</p>
+        <p>© {new Date().getFullYear()} FarmConnect. All rights reserved</p>
         <img
           src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/payment-method-c454fb.svg"
           alt="Payment methods"></img>
         <nav>
-          <Link to="/service" onClick={scrollToTop}>
+          {/* <Link to="/service" onClick={scrollToTop}>
             Our Services
           </Link>
           <Link to="/gift-card" onClick={scrollToTop}>
@@ -232,7 +226,7 @@ const Footer = () => {
           </Link>
           <Link to="/faq" onClick={scrollToTop}>
             FAQ
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </footer>

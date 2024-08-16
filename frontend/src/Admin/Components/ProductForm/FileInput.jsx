@@ -1,14 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react';
 
-const FileInput = ({ label, accept, multiple = false, maxFiles = Infinity, maxSize = 5 * 1024 * 1024 }) => {
+const FileInput = forwardRef(({ label, accept, multiple = false, maxFiles = Infinity, maxSize = 5 * 1024 * 1024 }, ref) => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
 
+  useImperativeHandle(ref, () => ({
+    getFiles: () => files,
+    clear: () => {
+      setFiles([]);
+      setError('');
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  }));
+
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
     const validFiles = selectedFiles.filter(file => file.size <= maxSize);
-    
+
     if (validFiles.length < selectedFiles.length) {
       setError(`Some files exceed the ${maxSize / 1024 / 1024}MB limit and were not included.`);
     } else {
@@ -75,6 +86,6 @@ const FileInput = ({ label, accept, multiple = false, maxFiles = Infinity, maxSi
       )}
     </div>
   );
-};
+});
 
 export default FileInput;

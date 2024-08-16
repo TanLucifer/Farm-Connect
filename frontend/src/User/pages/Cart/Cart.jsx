@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import tomato from '../../../assets/tomato.jpg';
 import lemon from '../../../assets/lemon.jpeg';
 import garlic from '../../../assets/garlic.jpeg';
+import {Link} from 'react-router-dom';
 
 const CartItem = ({ name, price, image, description, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(1);
@@ -103,9 +104,9 @@ const Cart = () => {
             <span>I agree to the Terms of Service</span>
           </label>
           
-          <button className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300">
-            Proceed to Payment
-          </button>
+          <Link to="/checkout" ><button className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300">
+            Proceed to Checkout
+          </button></Link>
         </div>
       </div>
     </div>

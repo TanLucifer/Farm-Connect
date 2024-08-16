@@ -8,14 +8,14 @@ import { VscAccount } from "react-icons/vsc";
 const Help = () => {
   return (
     <>
-      <div >
+      <div className="bg-red-200 ">
         <div className="h-28 flex items-center text-center justify-center">
           <h1 className="font-semibold text-3xl text-green-900">
             Hello, What can we help you with?
           </h1>
         </div>
         <div className="h-1 bg-green-950"></div>
-        <div className="flex flex-col h-[70vh] items-center justify-center gap-5">
+        <div className="flex flex-col h-[70vh] items-center justify-around">
           <div className="flex justify-around items-center py-2 px-8  gap-12 flex-row ">
             <div className="flex flex-row items-center justify-center gap-2 shadow-lg p-5">
               <GiBeachBag className="text-green-900" size={115} />
@@ -30,7 +30,7 @@ const Help = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-row items-center justify-center gap-2 shadow-xl p-5">
+            <div className="flex flex-row items-center justify-center gap-2 shadow-lg p-5">
               <RiExchangeBoxLine className="text-green-900" size={115} />
               <div className="flex flex-col justify-center gap-5">
                 <h3 className="font-semibold text-2xl text-green-700">

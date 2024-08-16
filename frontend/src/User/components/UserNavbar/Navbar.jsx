@@ -16,7 +16,7 @@ const Navbar = () => {
       <header className="bg-[#151c1fff] shadow-md relative w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex justify-between items-center">
-            <img src={logo} style={{ height: '9vh' }} alt="Logo" />
+           <Link to='/'><img src={logo} style={{ height: '12vh' }} alt="Logo" /></Link> 
 
             {/* Hamburger Button */}
             <div className="md:hidden">
@@ -27,14 +27,14 @@ const Navbar = () => {
 
             {/* Desktop Menu Items */}
             <div className="hidden md:flex space-x-6">
-              <Link to="/" className="text-white hover:text-green-900">Home</Link>
-              <Link to="/products" className="text-white hover:text-green-900">Products</Link>
-              <Link to="/about" className="text-white hover:text-green-900">About Us</Link>
-              <Link to="/contact" className="text-white hover:text-green-900">Contact</Link>
+              <Link to="/" className="text-white hover:text-[#fffac4ff]">Home</Link>
+              <Link to="/products" className="text-white hover:text-[#fffac4ff]">Products</Link>
+              <Link to="/about" className="text-white hover:text-[#fffac4ff]">About Us</Link>
+              <Link to="/contact" className="text-white hover:text-[#fffac4ff]">Contact</Link>
             </div>
 
             {/* Login Button */}
-           <Link to="/auth"> <button className="hidden md:block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
+           <Link to="/auth"> <button className="hidden md:block bg-[#fffac4ff]  text-black font-semibold py-3 px-5 transition duration-300"style={{borderRadius:'20px'}}>
               Login
             </button></Link>
           </nav>
@@ -50,10 +50,10 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col items-center space-y-6 mt-8">
-          <Link to="/" className="text-white hover:text-green-900 text-xl" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/products" className="text-white hover:text-green-900 text-xl" onClick={() => setIsOpen(false)}>Products</Link>
-          <Link to="/about" className="text-white hover:text-green-900 text-xl" onClick={() => setIsOpen(false)}>About Us</Link>
-          <Link to="/contact" className="text-white hover:text-green-900 text-xl" onClick={() => setIsOpen(false)}>Contact</Link>
+          <Link to="/" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>Home</Link>
+          <Link to="/products" className="text-white hover:text-[#fffac4ff]text-xl" onClick={() => setIsOpen(false)}>Products</Link>
+          <Link to="/about" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>About Us</Link>
+          <Link to="/contact" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>Contact</Link>
         </div>
       </div>
     </>
