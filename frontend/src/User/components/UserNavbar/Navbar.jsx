@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa'; // For hamburger and close icons
 import logo from '../../../assets/logo.png';
 
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,9 +34,9 @@ const Navbar = () => {
             </div>
 
             {/* Login Button */}
-            <button className="hidden md:block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
+           <Link to="/auth"> <button className="hidden md:block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
               Login
-            </button>
+            </button></Link>
           </nav>
         </div>
       </header>

@@ -7,14 +7,14 @@ import Background from '../../../assets/background.svg';
 const FarmConnect = () => {
   return (
     <div className="min-h-screen bg-green-50">
-      {/* <Navbar /> */}
+      
       <main>
         <section
           className="relative bg-cover bg-center h-screen flex items-center"
           style={{ backgroundImage: `url(${Background})` }}
         >
           <div className="absolute inset-0 bg-black opacity-50"></div>
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white"style={{zIndex:'1'}}>
             <h2 className="text-4xl md:text-6xl font-bold mb-4 mt-[15vh]">
               Cultivate Success with FarmConnect
             </h2>
@@ -32,7 +32,7 @@ const FarmConnect = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-[#151b1fff]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               {[
@@ -53,9 +53,9 @@ const FarmConnect = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-green-100">
+        <section className="py-20 bg-[#1a2226ff]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-3xl font-bold text-green-800 mb-12 text-center">
+            <h3 className="text-3xl font-bold text-white mb-12 text-center">
               Top Sellers This Season
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -81,17 +81,17 @@ const FarmConnect = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-[#151b1fff]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row items-center">
               <div className="w-full lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
-                <div className="aspect-w-16 aspect-h-9 bg-green-200 rounded-lg shadow-md overflow-hidden">
+                <div className="aspect-w-16 aspect-h-9  rounded-lg shadow-md overflow-hidden">
                   <img src={Homeill} alt="Farm produce" className="object-cover w-full h-full" />
                 </div>
               </div>
               <div className="w-full lg:w-1/2">
-                <h3 className="text-3xl font-bold text-green-800 mb-6">Join Our Growing Community</h3>
-                <p className="text-xl text-green-700 mb-8">
+                <h3 className="text-3xl font-bold text-white mb-6">Join Our Growing Community</h3>
+                <p className="text-xl text-white mb-8">
                   Access secure and transparent transactions for all your farming needs. Stay updated with the latest trends and opportunities.
                 </p>
                 <div className="flex flex-col sm:flex-row">
@@ -110,36 +110,7 @@ const FarmConnect = () => {
         </section>
       </main>
 
-      {/* <footer className="bg-green-800 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-2xl font-bold mb-4">FarmConnect</h4>
-              <p className="text-green-200">Connecting farmers and buyers since 2024</p>
-            </div>
-            <div>
-              <h5 className="text-xl font-semibold mb-4">Quick Links</h5>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-green-200 hover:text-white">Home</a></li>
-                <li><a href="#" className="text-green-200 hover:text-white">About Us</a></li>
-                <li><a href="#" className="text-green-200 hover:text-white">Products</a></li>
-                <li><a href="#" className="text-green-200 hover:text-white">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-xl font-semibold mb-4">Follow Us</h5>
-              <div className="flex space-x-4">
-                <a href="#" className="text-green-200 hover:text-white">Facebook</a>
-                <a href="#" className="text-green-200 hover:text-white">Twitter</a>
-                <a href="#" className="text-green-200 hover:text-white">Instagram</a>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-green-700 text-center">
-            <p className="text-green-200">&copy; 2024 FarmConnect. All rights reserved.</p>
-          </div>
-        </div>
-      </footer> */}
+      
     </div>
   );
 };

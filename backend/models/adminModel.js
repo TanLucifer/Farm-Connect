@@ -3,19 +3,23 @@ import mongoose from "mongoose";
 const adminSchema = mongoose.Schema({
 admin_id:{
     type:String,
-    default:"ntF6hHDnkC"
+    default:"ntF6hHDnkC",
+    required:true,
+    unique:true,
+    lowercase: true,
+    trim: true
 },
 admin_permission:{
     type:String,
-    enum:["super_admin"],
+    enum:["super_admin","admin"],
     default:"super_admin"
 },
-username:{
+admin_username:{
     type:String,
     unique:true,
     required:true
 },
-password:{
+admin_password:{
     type:String,
     required:true,
 },
@@ -32,4 +36,5 @@ default:0
     timestamps:true
 })
 
-export const adminCollection =  mongoose.model("Admin",adminSchema)
+const adminCollection =  mongoose.model("Admin",adminSchema)
+export default adminCollection;
