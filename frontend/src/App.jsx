@@ -23,44 +23,46 @@ import Privacy from './User/pages/Privacy/Privacy';
 import Dashboard from './User/pages/UserDashboard/Dashboard';
 import DashboardOrder from './User/pages/UserDashboard/dashboard-order';
 import Profile from './User/pages/UserDashboard/ProfilePage';
-import DashboardNotifications from './User/pages/UserDashboard/NotificationPage';
+import DashboardNotifications  from './User/pages/UserDashboard/NotificationPage';
 import DashboardWishlist from './User/pages/UserDashboard/dashboard-wishlist';
 import FAQ from './User/pages/Faq/Faq';
 // import ReturnPolicy from './User/pages/ReturnPolicy/ReturnPolicy';
 
+
+// Main App Component
 const App = () => {
   return (
     <Router>
       <Routes>
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Home />} /> 
           <Route path="auth" element={<Auth />} />
-          <Route path="about" element={<ProtectedRoute><About /></ProtectedRoute>} />
-          <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-          <Route path="order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
-          <Route path="orderStatus" element={<ProtectedRoute><OrderStatus /></ProtectedRoute>} />
+          <Route path="about" element={<ProtectedRoute element={<About />} />} />
+          <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />
+          <Route path="order" element={<ProtectedRoute element={<Order />} />} />
+          <Route path="orderStatus" element={<ProtectedRoute element={<OrderStatus />} />} />
           <Route path="help" element={<Help />} />
           <Route path="products" element={<Products />} />
           <Route path="forgetpassword" element={<ForgetPassword />} />
-          <Route path="checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-          <Route path="productDetails" element={<ProductDetails />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="privacy" element={<Privacy />} />
-          <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="dashboard-order" element={<ProtectedRoute><DashboardOrder /></ProtectedRoute>} />
-          <Route path="dashboard-notifications" element={<ProtectedRoute><DashboardNotifications /></ProtectedRoute>} />
-          <Route path="dashboard-wishlist" element={<ProtectedRoute><DashboardWishlist /></ProtectedRoute>} />
-          <Route path="faq" element={<FAQ />} />
-          {/* <Route path="return" element={<ReturnPolicy />} /> */}
           <Route path="*" element={<Error />} /> {/* Catch-all for undefined routes */}
+          <Route path="checkout" element={<Checkout/>} /> 
+          <Route path="productDetails" element={<ProductDetails/>} /> 
+          <Route path="contact" element={<Contact/>} /> 
+          <Route path="privacy" element={<Privacy/>} /> 
+          <Route path="dashboard" element={<Dashboard/>} /> 
+          <Route path="profile" element={<Profile/>} /> 
+          <Route path="dashboard-order" element={<DashboardOrder/>} /> 
+          <Route path="dashboard-notifications" element={<DashboardNotifications/>} /> 
+          <Route path="dashboard-wishlist" element={<DashboardWishlist/>} /> 
+          <Route path="faq" element={< FAQ/>} /> 
+          {/* <Route path="return" element={<ReturnPolicy/>} />  */}
         </Route>
 
         {/* Admin Routes */}
-        <Route path="/" element={<AdminLayout />}>
+        <Route path="/admi" element={<AdminLayout />}>
           <Route index element={<AdminPanel />} />
-          <Route path="adminauth" element={<AdminLogin />} />
+          <Route path="adminauth" element={<AdminLogin />} /> 
           <Route path="productform" element={<ProductForm />} />
           <Route path="register" element={<Registration />} />
         </Route>
