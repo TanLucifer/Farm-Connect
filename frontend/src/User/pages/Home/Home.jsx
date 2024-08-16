@@ -17,7 +17,7 @@ const FarmConnect = () => {
         >
           <div className="absolute inset-0 bg-black opacity-50"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white"style={{zIndex:'1'}}>
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 mt-[15vh]">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 ">
               Cultivate Success with FarmConnect
             </h2>
             

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const SearchResults = () => {
   const [cropType, setCropType] = useState('');
@@ -7,6 +9,8 @@ const SearchResults = () => {
     endingSoonest: false,
     newArrivals: false,
   });
+  const [wishlist, setWishlist] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const products = [
     { id: 1, title: 'Not interested', price: 3.5, timeLeft: '4 days, 5 hours' },
@@ -17,12 +21,34 @@ const SearchResults = () => {
     { id: 6, title: 'Organic fruits', price: 3.5, quantity: '1000 kg' },
   ];
 
+  const toggleWishlist = (productId) => {
+    setWishlist((prevWishlist) =>
+      prevWishlist.includes(productId)
+        ? prevWishlist.filter((id) => id !== productId)
+        : [...prevWishlist, productId]
+    );
+  };
+
   return (
     <div className="bg-green-50 min-h-screen">
       <div className="container mx-auto p-4">
+        {/* Search Bar */}
+        <div className="mb-6 flex items-center justify-between">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full p-2 border border-green-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button className="ml-2 px-4 py-2 bg-yellow-500 text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
+            Search
+          </button>
+        </div>
+
         <header className="mb-6 bg-green-600 text-white p-4 rounded-lg shadow-md">
           <button className="mb-2 hover:text-yellow-300 transition-colors">&larr;</button>
-          <h1 className="text-2xl font-bold">Search results for "Fresh Produce"</h1>
+          <h1 className="text-2xl font-bold">Search results for "{searchQuery || 'Fresh Produce'}"</h1>
           <p className="text-green-100">120 results</p>
         </header>
 
@@ -56,18 +82,25 @@ const SearchResults = () => {
                 </div>
               ))}
             </div>
-
-            {/* Add more filter options here */}
           </aside>
 
           <main className="w-full md:w-3/4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((product) => (
-                <div key={product.id} className="bg-white border border-green-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                <div key={product.id} className="bg-white border border-green-200 rounded-lg p-4 hover:shadow-lg transition-shadow relative">
+                  <button
+                    className={`absolute top-2 right-2 ${wishlist.includes(product.id) ? 'text-red-500' : 'text-gray-400'}`}
+                    onClick={() => toggleWishlist(product.id)}
+                  >
+                    <FontAwesomeIcon icon={faHeart} className="h-8 w-8" />
+                  </button>
                   <div className="bg-green-100 h-40 mb-2 rounded"></div>
                   <h3 className="font-bold text-green-800">{product.title}</h3>
                   <p className="text-yellow-600 font-semibold">Current price: ${product.price.toFixed(2)}</p>
                   <p className="text-green-600">{product.timeLeft || `Available: ${product.quantity}`}</p>
+                  <button className="mt-4 px-4 py-2 bg-yellow-500 text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
+                    Add to Cart
+                  </button>
                 </div>
               ))}
             </div>
