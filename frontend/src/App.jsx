@@ -24,7 +24,7 @@ const App = () => {
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} /> 
-          <Route path="login" element={<Auth />} />
+          <Route path="auth" element={<Auth />} />
           <Route path="about" element={<ProtectedRoute element={<About />} />} />
           <Route path="cart" element={<ProtectedRoute element={<Cart />} />} />
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />

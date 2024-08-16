@@ -21,9 +21,8 @@ export const createProductController = async (req,res)=>{
          
         } = req.body;
     
-        const farmerId = req.farmer.id; // Assuming farmer's ID is available from req.user
+        const farmerId = req.farmer.id; 
     
-        // Validate mandatory fields
         if (
           !SKU ||
           !productname ||
@@ -38,13 +37,11 @@ export const createProductController = async (req,res)=>{
           return res.status(400).json({ message: 'Missing required fields' });
         }
     
-        // Check if the farmer exists
         const farmer = await Farmer.findById(farmerId);
         if (!farmer) {
           return res.status(404).json({ message: 'Farmer not found' });
         }
     
-        // Create new product
         const newProduct = new Product({
           SKU,
           productname,
@@ -73,3 +70,14 @@ export const createProductController = async (req,res)=>{
 
 
 
+export const getAllProduct = async (req,res) =>{
+  try {
+ const allProducts =await  Product.find()
+ res.status(200).json({products: allProducts}) 
+    
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+    res.status(500).json({ message: 'Internal server error fetching products.' });
+    
+  }
+}
