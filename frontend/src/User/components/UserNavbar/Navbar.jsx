@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa'; // For hamburger and close icons
 import logo from '../../../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if a token exists in local storage
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem('token');
+      window.location.reload();
+      // Hit the logout route
+      const response = await fetch('http://localhost/api/user/auth/logout', {
+        method: 'POST',
+        credentials: 'include', // Ensure cookies are sent with the request if needed
+      });
+
+      if (response.ok) {
+        // Clear the token from local storage
+        
+        // Update the login state
+        setIsLoggedIn(false);
+
+        // Reload the page to update the UI
+        
+      } else {
+        console.error('Failed to log out. Status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   return (
@@ -34,12 +67,20 @@ const Navbar = () => {
             <Link to="/contact" className="text-white hover:text-[#fffac4ff]">Contact</Link>
           </div>
 
-          {/* Login Button */}
-          <Link to="/auth">
-            <button className="hidden md:block bg-[#fffac4ff] text-black font-semibold py-2 px-4 transition duration-300 rounded-lg">
-              Login
-            </button>
-          </Link>
+          {/* Login/Logout Button */}
+          <div className="hidden md:block">
+            {isLoggedIn ? (
+              <button onClick={handleLogout} className="bg-[#fffac4ff] text-black font-semibold py-2 px-4 transition duration-300 rounded-lg">
+                Logout
+              </button>
+            ) : (
+              <Link to="/auth">
+                <button className="bg-[#fffac4ff] text-black font-semibold py-2 px-4 transition duration-300 rounded-lg">
+                  Login
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </header>
 
@@ -56,6 +97,15 @@ const Navbar = () => {
           <Link to="/products" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>Products</Link>
           <Link to="/about" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>About Us</Link>
           <Link to="/contact" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>Contact</Link>
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="text-white hover:text-[#fffac4ff] text-xl">
+              Logout
+            </button>
+          ) : (
+            <Link to="/auth" className="text-white hover:text-[#fffac4ff] text-xl" onClick={() => setIsOpen(false)}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </>

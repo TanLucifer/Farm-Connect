@@ -8,9 +8,11 @@ import orderRouter from "../router/orderRouter.js"
 import { mongooseConn } from "../config/mongo-connection.js";
 import cookie from 'cookie-parser'
 import cors from 'cors'
-import path from "path"
+import path from 'path';
+import { fileURLToPath } from 'url';
 const app = express();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 env.config()
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -21,7 +23,7 @@ const port = process.env.PORT || 8000 ;
 mongooseConn(process.env.MONGO_URI)
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('../public'))
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 app.use("/api/user/auth",userAuthRouter)
 app.use("/api/farmer/auth",farmerAuthRouter)
 app.use("/api/admin",createdAdmin)

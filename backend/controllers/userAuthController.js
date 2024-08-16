@@ -112,13 +112,13 @@ export const getMeController = async (req, res) => {
        return res.status(500).json({ message: "Internal server error." });
    }
 };
-export const logoutController = async (req,res) =>{
-    try{
-        res.clearCookie("access_token", { path: "/" });
-        return res.status(200).json({ message: "Logged out successfully." });
-    } catch(error){
-        console.error("Error in logoutController:", error.message);
-        return res.status(500).json({ message: "Internal server error." });
-    }
-
+export const logoutController = async (req, res) => {
+  try {
+      res.clearCookie("access_token", { path: "/" }); 
+      
+      return res.status(200).json({ message: "Logged out successfully." });
+  } catch (error) {
+      console.error("Error in logoutController:", error.message);
+      return res.status(500).json({ message: "Internal server error." });
+  }
 }

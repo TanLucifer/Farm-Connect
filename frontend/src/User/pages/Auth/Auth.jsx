@@ -54,7 +54,8 @@ const AuthForm = () => {
           timer: 1500,
           showConfirmButton: false
         });
-        navigate('/'); // Redirect to the home route on success
+        navigate('/');
+        window.location.reload() // Redirect to the home route on success
       } else {
         const errorData = await response.json();
         console.error('Error:', errorData.message);

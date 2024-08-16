@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "lord-icon-element": "^4.1.2",
     "mongoose": "^8.5.3",
+    "multer": "^1.4.5-lts.1",
     "react-hot-toast": "^2.4.1",
     "reactjs-popup": "^2.0.6",
     "sweetalert2": "^11.12.4",

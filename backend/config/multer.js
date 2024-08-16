@@ -3,7 +3,6 @@ import path from 'path';
 import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { log } from 'console';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
