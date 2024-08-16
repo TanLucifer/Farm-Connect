@@ -17,6 +17,8 @@ import ProductForm from './Admin/Pages/ProductForm/ProductForm';
 import Registration from './Admin/Pages/Registration/Registration';
 import Checkout from './User/pages/Cart/Checkout';
 import Products from './User/pages/Products/Products';
+import ProductDetails from './User/components/Products/ProductDetails';
+import Contact from './User/pages/Contact/Contact';
 
 
 // Main App Component
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="forgetpassword" element={<ForgetPassword />} />
           <Route path="*" element={<Error />} /> {/* Catch-all for undefined routes */}
           <Route path="checkout" element={<Checkout/>} /> 
+          <Route path="productDetails" element={<ProductDetails/>} /> 
+          <Route path="contact" element={<Contact/>} /> 
         </Route>
 
         {/* Admin Routes */}

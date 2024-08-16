@@ -31,7 +31,7 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="bg-green-50 min-h-screen">
+    <div className="bg-[#fffde8ff] min-h-screen">
       <div className="container mx-auto p-4">
         {/* Search Bar */}
         <div className="mb-6 flex items-center justify-between">
@@ -47,14 +47,14 @@ const SearchResults = () => {
           </button>
         </div>
 
-        <header className="mb-6 bg-green-600 text-white p-4 rounded-lg shadow-md">
-          <button className="mb-2 hover:text-yellow-300 transition-colors">&larr;</button>
+        <header className="mb-6 bg-[#fffac4ff] text-black p-4 rounded-lg shadow-md">
+          <button className="mb-2  transition-colors"style={{fontSize:'16px'}}>&larr;</button>
           <h1 className="text-2xl font-bold">Search results for "{searchQuery || 'Fresh Produce'}"</h1>
           <p className="text-green-100">120 results</p>
         </header>
 
         <div className="flex flex-col md:flex-row gap-6">
-          <aside className="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md">
+          <aside className="w-full md:w-1/4 bg-[#dbd6bfff] p-4 rounded-lg shadow-md">
             <div className="mb-4">
               <label htmlFor="cropType" className="block mb-2 font-semibold text-green-800">Filter by crop type</label>
               <select
@@ -88,7 +88,7 @@ const SearchResults = () => {
           <main className="w-full md:w-3/4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((product) => (
-                <div key={product.id} className="bg-white border border-green-200 rounded-lg p-4 hover:shadow-lg transition-shadow relative">
+                <div key={product.id} className="bg-[#c2b893ff] border border-green-200 rounded-lg p-4 hover:shadow-lg transition-shadow relative">
                   <button
                     className={`absolute top-2 right-2 ${wishlist.includes(product.id) ? 'text-red-500' : 'text-gray-400'}`}
                     onClick={() => toggleWishlist(product.id)}
@@ -96,10 +96,10 @@ const SearchResults = () => {
                     <FontAwesomeIcon icon={faHeart} className="h-8 w-8" />
                   </button>
                   <div className="bg-green-100 h-40 mb-2 rounded"></div>
-                  <h3 className="font-bold text-green-800">{product.title}</h3>
-                  <p className="text-yellow-600 font-semibold">Current price: ${product.price.toFixed(2)}</p>
-                  <p className="text-green-600">{product.timeLeft || `Available: ${product.quantity}`}</p>
-                  <Link to='/cart'><button className="mt-4 px-4 py-2 bg-yellow-500 text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
+                  <h3 className="font-bold text-[black]">{product.title}</h3>
+                  <p className="text-[#fffac4ff] font-semibold">Current price: ${product.price.toFixed(2)}</p>
+                  <p className="text-[#fffac4ff">{product.timeLeft || `Available: ${product.quantity}`}</p>
+                  <Link to='/cart'><button className="mt-4 px-4 py-2 bg-[#fffac4ff] text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
                     Add to Cart
                   </button></Link>
                 </div>
@@ -108,8 +108,9 @@ const SearchResults = () => {
           </main>
         </div>
 
-        <button className="mt-6 px-6 py-2 bg-yellow-500 text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
-          Filter results
+        <button className="mt-6  px-6 py-2 bg-yellow-500 text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md"
+        style={{marginLeft:'45vw'}}>
+          See More
         </button>
       </div>
     </div>
