@@ -3,6 +3,8 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import Homeill from '../../../assets/home_ill.png';
 import Background from '../../../assets/background.svg';
+import Navbar from '../../components/UserNavbar/Navbar';
+
 
 const FarmConnect = () => {
   return (
@@ -18,6 +20,7 @@ const FarmConnect = () => {
             <h2 className="text-4xl md:text-6xl font-bold mb-4 mt-[15vh]">
               Cultivate Success with FarmConnect
             </h2>
+            
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               Join our thriving community of over 5,000 farm products and a network of trusted buyers and sellers.
             </p>
@@ -103,6 +106,7 @@ const FarmConnect = () => {
                   <button className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-8 rounded-full transition duration-300">
                     Join Now
                   </button>
+                  
                 </div>
               </div>
             </div>
