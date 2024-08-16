@@ -8,8 +8,14 @@ import Cart from './User/pages/Cart/Cart';
 import Order from './User/pages/Cart/Order';
 import OrderStatus from './User/pages/Cart/OrderStatus';
 import Help from './User/pages/Help/Help';
-
-
+import ProtectedRoute from "./User/components/ProtectedRoute/ProtectedRoute"
+import ForgetPassword from "./User/pages/ForgetPassword/ForgetPassword"
+import AdminLayout from './Admin/AdminLayout'
+import AdminPanel from "./Admin/Pages/Adminpanel"
+import AdminLogin from "./Admin/Pages/AdminLogin"
+import ProductForm from "./Admin/Pages/ProductForm/ProductForm"
+import Registration from "./Admin/Pages/Registration/Registration"
+import Error from "./User/pages/Error/Error"
 // Main App Component
 const App = () => {
   return (
