@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Aside from "../../components/Aside/Aside";
+import Aside from "../../components/Dashboard/Aside";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Dashboard/Header";
 import SearchBar from "../../components/Dashboard/SearchBar";
-import TUMBLER from "../../../assets/TUMBLER.png";
 
 const textColor = "text-zinc-800";
 const subTextColor = "text-zinc-600";
@@ -59,14 +58,14 @@ const ProductCard = ({
   totalItems,
   totalAmount,
   shipTo,
-  orderId
+  orderId,
 }) => (
   <div
     className={`${containerBg} p-4 rounded-lg mb-4`}
     style={{ border: "1px solid black" }}>
     {/* Arrival Date */}
     <p className="text-green-700 font-semibold mb-2">{arrivalDate}</p>
-    
+
     {/* Order Info */}
     <div
       className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 bg-[#d8e6d3ff] p-4"
@@ -79,14 +78,14 @@ const ProductCard = ({
       <OrderInfo label="TOTAL" value={totalAmount} />
       <OrderInfo label="SHIP TO" value={shipTo} />
     </div>
-    
+
     {/* Order Details */}
     <OrderDetails orderNumber={orderId} />
-    
+
     {/* Product Info */}
     <div className="flex flex-col md:flex-row items-center">
       <img
-        src={productImage}
+        src={productImage || "https://via.placeholder.com/150"}
         alt={productName}
         className="w-20 h-20 rounded-lg mb-4 md:mb-0 md:mr-4"
       />
@@ -95,9 +94,7 @@ const ProductCard = ({
         <p className={subTextColor}>{productDescription}</p>
       </div>
       <div className="flex flex-col space-y-2">
-        <button
-          type="button"
-          className={`bg-green-600 text-white ${buttonBase}`}>
+        <button type="button" className={`bg-green-600 text-white ${buttonBase}`}>
           Track Package
         </button>
         <button
@@ -139,7 +136,7 @@ const DashboardOrders = () => {
             arrivalDate="Arriving Wednesday"
             productName="BAMBOO PRODUCT - TUMBLER"
             productDescription="This eco-friendly bamboo tumbler offers a stylish and sustainable alternative for your beverage needs. Its natural bamboo exterior provides excellent insulation while ensuring a unique and elegant look."
-            productImage={TUMBLER}
+            productImage="" // Placeholder will be used
             orderPlaced="8 JUNE 2024"
             totalItems="1"
             totalAmount="₹350"
@@ -150,7 +147,7 @@ const DashboardOrders = () => {
             arrivalDate="Arriving Friday"
             productName="BAMBOO PRODUCT - BOTTLE"
             productDescription="A sleek bamboo bottle designed for durability and style. Perfect for keeping your drinks hot or cold."
-            productImage={TUMBLER}
+            productImage="" // Placeholder will be used
             orderPlaced="9 JUNE 2024"
             totalItems="1"
             totalAmount="₹250"

@@ -1,271 +1,127 @@
-import React, { useState } from "react";
-import Aside from "../../components/Aside/Aside";
-import { Link, useNavigate } from "react-router-dom";
-import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import CartEmpty from "../Order/CartEmpty";
-import { useDispatch, useSelector } from "react-redux";
-import Header from "../../components/Dashboard/Header";
-import SearchBar from "../../components/Dashboard/SearchBar";
-import { clearCart, manageCartItem } from "../../redux/cartSlice";
-import toast from "react-hot-toast";
-import OrderSummary from "../../components/Order/OrderSummary";
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import tomato from '../../../assets/tomato.jpg';
+import lemon from '../../../assets/lemon.jpeg';
+import garlic from '../../../assets/garlic.jpeg';
 
-const cardClass = "p-4 bg-white rounded-lg shadow-md";
-const textClass = "text-zinc-500";
-const buttonBgClass =
-  "bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out";
-const currencyFormatter = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-});
+const CartItem = ({ name, price, image, description, onQuantityChange }) => {
+  const [quantity, setQuantity] = useState(1);
 
-const CartItem = ({ product, onUpdate }) => (
-  <div
-    className={`${cardClass} flex items-center justify-between mb-4 mt-12`}
-    style={{ border: "1px solid black" }}>
-    <div className="flex items-center">
-      <img
-        src={product.image}
-        alt={product.title}
-        className="w-32 h-32 md:w-20 md:h-20 rounded-lg mr-4"
-      />
-      <div>
-        <h3 className="text-lg font-semibold text-zinc-800">{product.title}</h3>
-        <p className={textClass}>
-          <p className="text-gray-600 text-lg my-2 flex items-center gap-2">
-            {currencyFormatter.format(product.total)}
-            <span className="text-sm text-green-500 line-through">
-              {currencyFormatter.format(product.oldPrice * product.quantity)}
-            </span>
-          </p>
-        </p>
-        <p className="flex gap-3 items-center">
-          <span onClick={() => onUpdate(product, -1)}>
-            <FaMinusCircle />
-          </span>
-          <span>{product.quantity}</span>
-          <span onClick={() => onUpdate(product, 1)}>
-            <FaPlusCircle />
-          </span>
-        </p>
-      </div>
-    </div>
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-    <lord-icon
-      src="https://cdn.lordicon.com/skkahier.json"
-      trigger="hover"
-      colors="primary:#ff0000"
-      style={{ width: "30px", height: "30px", cursor: "pointer" }}
-      onClick={() => {
-        onUpdate(product, -1 * product.quantity);
-        toast.success("Successfully deleted");
-      }}
-      onKeyUp={(e) => {
-        if (e.key === "Enter") onUpdate(product, -1 * product.quantity);
-      }}
-      tabIndex="0"></lord-icon>
-  </div>
-);
-
-const Subtotal = ({ items }) => {
-  const itemsTotal = items.reduce((acc, item) => acc + item.total, 0);
-
-  const shippingThreshold = 500.0;
-  const shippingRate = 40.0;
-
-  let shipping = itemsTotal >= shippingThreshold ? 0.0 : shippingRate;
-  let total = itemsTotal + shipping;
-
-  if (itemsTotal === 0) {
-    return <></>;
-  }
+  const handleQuantityChange = (change) => {
+    const newQuantity = Math.max(1, quantity + change);
+    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
+  };
 
   return (
-    <div className="mb-5">
-      <h2 className="text-2xl font-bold mb-6 text-black">Subtotal</h2>
-      <div
-        className={`${cardClass} space-y-2`}
-        style={{ border: "1px solid black" }}>
-        <p className="text-lg font-semibold text-zinc-800">Order Summary</p>
-        <ul className="list-inside text-zinc-700 space-y-1 list-none">
-          <hr />
-          {items.map((item, index) => (
-            <li
-              key={index}
-              className="flex items-center justify-between gap-5 py-1">
-              <span>{item.title}</span>
-              <span>{currencyFormatter.format(item.total)}</span>
-            </li>
-          ))}
-          <li className="flex items-center justify-between gap-5 font-bold">
-            <span>Shipping</span>
-            <span>{currencyFormatter.format(shipping)}</span>
-          </li>
-          <hr />
-          <li className="flex items-center justify-between gap-5 font-bold text-xl">
-            <span>Total</span>
-            <span>{currencyFormatter.format(total)}</span>
-          </li>
-        </ul>
+    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 bg-white p-6 rounded-lg shadow-md">
+      <div className="w-full md:w-32 h-32 bg-gray-300 rounded-md flex-shrink-0">
+        <img src={image} alt={name} className="w-full h-full object-cover rounded-md" />
       </div>
-    </div>
-  );
-};
-
-const ProceedToCheckout = () => {
-  return (
-    <div className="mt-6">
-      <div className="mt-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-        <input
-          type="text"
-          placeholder="Enter coupon code"
-          className="p-2 border border-gray-300 rounded-md w-full"
-        />
-        <button type="button" className={`${buttonBgClass} w-full sm:w-auto`}>
-          Redeem
-        </button>
+      <div className="flex-grow">
+        <p className="font-semibold text-xl text-yellow-900">{name}</p>
+        <p className="text-yellow-700">{description}</p>
       </div>
-      <div className="mt-4 flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-8">
-        <Link to="/Checkout">
-          <button
-            type="button"
-            className={`${buttonBgClass} w-full sm:w-auto`}
-            style={{ minWidth: "375px" }}>
-            Check Out
+      <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          <button 
+            onClick={() => handleQuantityChange(-1)} 
+            className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded"
+          >
+            -
           </button>
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const LoginToContinue = () => {
-  return (
-    <div>
-      <p className="text-lg font-bold">
-        Seems like you are not logged in yet. Please login to proceed to
-        Checkout.
-      </p>
-      <div className="mt-4 flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-8">
-        <Link to="/auth">
-          <button
-            type="button"
-            className={`${buttonBgClass} w-full sm:w-auto`}
-            style={{ minWidth: "425px" }}>
-            Login now
+          <span className="font-semibold">{quantity}</span>
+          <button 
+            onClick={() => handleQuantityChange(1)} 
+            className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded"
+          >
+            +
           </button>
-        </Link>
+        </div>
+        <p className="font-bold text-xl text-yellow-900">${(price * quantity).toFixed(2)}</p>
       </div>
     </div>
   );
 };
 
 const DashboardCart = () => {
-  const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const handleSearch = (e) => setSearchTerm(e.target.value);
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
+  const [items, setItems] = useState([
+    { id: 1, name: "Tomato", price: 99, image: tomato, description: "Fresh and organic tomatoes." },
+    { id: 2, name: "Lemon", price: 149, image: lemon, description: "Juicy and ripe lemons." },
+    { id: 3, name: "Garlic", price: 199, image: garlic, description: "Aromatic and flavorful garlic." },
+  ]);
 
-  const onUpdate = (product, quantity) => {
-    dispatch(manageCartItem({ product, quantity }));
+  const [quantities, setQuantities] = useState({});
+
+  const handleQuantityChange = (id, quantity) => {
+    setQuantities(prev => ({ ...prev, [id]: quantity }));
   };
-  // const onClearCart = () => {
-  //   const confirmed = window.confirm(
-  //     "Are you sure you want to clear your cart?"
-  //   );
-  //   if (confirmed) {
-  //     dispatch(clearCart());
-  //     toast.success(`Cart successfully cleared!`);
-  //   }
-  // };
-  const onClearCart = () => {
-    Swal.fire({
-      title: "Do you really want to clear?",
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-        cancelButton: "custom-cancel-button",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Cleared successfully!",
-          text: "Thanks for clearing!",
-          icon: "success",
-          confirmButtonText: "OK",
-          customClass: {
-            popup: "custom-popup",
-            title: "custom-title",
-            content: "custom-content",
-            confirmButton: "custom-confirm-button",
-          },
-        }).then(() => {
-          dispatch(clearCart());
-        });
-      }
-    });
-  };
+
+  const subtotal = items.reduce((sum, item) => sum + item.price * (quantities[item.id] || 1), 0);
+  const shipping = 10;
+  const tax = subtotal * 0.1;
+  const total = subtotal + shipping + tax;
 
   return (
-    <div className="flex min-h-screen bg-[#fff1e6]">
-      {/* Sidebar */}
-      <Aside />
+    <div className="min-h-screen bg-yellow-50 flex flex-col md:flex-row">
+      {/* Left side - Product list */}
+      <div className="md:w-2/3 p-6 md:p-12 overflow-y-auto mt-10">
+        <h1 className="text-3xl font-bold mb-8 text-yellow-800">Your Cart</h1>
+        <div className="space-y-6">
+          {items.map((item) => (
+            <CartItem 
+              key={item.id} 
+              name={item.name} 
+              price={item.price}
+              image={item.image}
+              description={item.description}
+              onQuantityChange={(quantity) => handleQuantityChange(item.id, quantity)}
+            />
+          ))}
+        </div>
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 mt-20">
-        {/* Header */}
-        <Header />
-
-        {/* Search Bar */}
-        <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
-
-        {/* New Today Section */}
-        <div className="container mx-auto p-4 w-full max-w-7xl mt-4">
-          <div className="flex flex-col lg:flex-row lg:space-x-8">
-            <div className="w-full lg:w-2/3">
-              <h2 className="text-2xl font-bold mb-6 text-zinc-800">
-                Your Cart
-              </h2>
-              {cartItems.length === 0 ? (
-                <CartEmpty />
-              ) : (
-                <>
-                  <div className="space-y-6">
-                    {cartItems.map((item) => (
-                      <CartItem
-                        key={item.id}
-                        product={item}
-                        onUpdate={onUpdate}
-                      />
-                    ))}
-                  </div>
-                  <div className="mt-6 flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-4">
-                    <button
-                      type="button"
-                      className={`${buttonBgClass} w-full sm:w-auto`}
-                      onClick={onClearCart}>
-                      Clear Cart
-                    </button>
-                  </div>
-                </>
-              )}
+      {/* Right side - Order summary */}
+      <div className="md:w-1/3 bg-yellow-100 p-6 md:p-12 flex flex-col justify-between mt-20">
+        <div>
+          <h2 className="text-2xl font-bold mb-6 text-yellow-800">Order Summary</h2>
+          <div className="space-y-4 mb-6">
+            <div className="flex justify-between">
+              <span className="text-yellow-700">Subtotal</span>
+              <span className="font-semibold text-yellow-900">${subtotal.toFixed(2)}</span>
             </div>
-            <div className="w-full lg:w-1/3 mt-8 lg:mt-10">
-              <OrderSummary />
-
-              <ProceedToCheckout />
+            <div className="flex justify-between">
+              <span className="text-yellow-700">Shipping</span>
+              <span className="font-semibold text-yellow-900">${shipping.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-yellow-700">Tax</span>
+              <span className="font-semibold text-yellow-900">${tax.toFixed(2)}</span>
+            </div>
+          </div>
+          <div className="border-t border-yellow-300 pt-4 mb-6">
+            <div className="flex justify-between">
+              <span className="text-xl font-bold text-yellow-800">Total</span>
+              <span className="text-xl font-bold text-yellow-900">${total.toFixed(2)}</span>
             </div>
           </div>
         </div>
-      </main>
+        
+        <div>
+          <label className="flex items-center space-x-2 text-yellow-800 mb-6">
+            <input type="checkbox" className="form-checkbox text-yellow-500" />
+            <span>I agree to the Terms of Service</span>
+          </label>
+          
+          <Link to="/checkout">
+            <button 
+              className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300"
+            >
+              Proceed to Checkout
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

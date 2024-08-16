@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Aside from "../../components/Aside/Aside";
+import Aside from "../../components/Dashboard/Aside";
 import copy from "../../../assets/copy.png";
 import toast from "react-hot-toast";
 import Popup from "reactjs-popup";

@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import Aside from "../../components/Aside/Aside";
+import Aside from "../../components/Dashboard/Aside";
 import { Link, useNavigate } from "react-router-dom";
-import WishlistEmpty from "../Order/WishlistEmpty";
-import { useDispatch, useSelector } from "react-redux";
+// import WishlistEmpty from "../Order/WishlistEmpty";
 import Header from "../../components/Dashboard/Header";
 import SearchBar from "../../components/Dashboard/SearchBar";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { clearWishlist, manageWishlistItem } from "../../redux/wishlist";
-import { manageCartItem } from "../../redux/cartSlice";
 
 const cardClass = "p-4 bg-white rounded-lg shadow-md";
 const textClass = "text-zinc-500";
@@ -44,8 +41,6 @@ const WishlistItem = ({ product, onUpdate, onAddToCart, isExistsInTheCart }) => 
             : "Add to Cart"}
         </button>
       </div>
-
-
     </div>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <lord-icon
@@ -67,12 +62,33 @@ const WishlistItem = ({ product, onUpdate, onAddToCart, isExistsInTheCart }) => 
 const DashboardWishlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (e) => setSearchTerm(e.target.value);
-  const wishlistItems = useSelector((state) => state.wishlist.items);
-  const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
+  
+  // Local state to manage wishlist and cart items
+  const [wishlistItems, setWishlistItems] = useState([
+    // Add your initial wishlist items here (for example purposes)
+    {
+      id: 1,
+      image: "https://via.placeholder.com/150",
+      title: "Bamboo Tumbler",
+      newPrice: 350,
+      price: 500,
+      quantity: 1,
+    },
+    {
+      id: 2,
+      image: "https://via.placeholder.com/150",
+      title: "Bamboo Bottle",
+      newPrice: 250,
+      price: 400,
+      quantity: 1,
+    },
+  ]);
+
+  const [cartItems, setCartItems] = useState([]);
 
   const onUpdate = (product, quantity) => {
-    dispatch(manageWishlistItem({ product, quantity }));
+    const updatedItems = wishlistItems.filter(item => item.id !== product.id);
+    setWishlistItems(updatedItems);
   };
 
   const onClearWishlist = () => {
@@ -102,18 +118,16 @@ const DashboardWishlist = () => {
             confirmButton: "custom-confirm-button",
           },
         }).then(() => {
-          dispatch(clearWishlist());
+          setWishlistItems([]);  // Clear the wishlist
         });
       }
     });
   };
 
   const onAddToCart = (product) => {
-    const quantity = 1;
-    dispatch(manageCartItem({ product, quantity }));
+    setCartItems([...cartItems, product]);
     toast.success(`Item added to cart!`);
   };
-
 
   return (
     <div className="flex min-h-screen bg-[#fff1e6]">

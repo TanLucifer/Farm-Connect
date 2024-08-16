@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import granola from "../../../assets/granola.jpg";
-import cuttery from "../../../assets/cuttery-set.jpg";
-import basket from "../../../assets/basket.png";
-import shawls from "../../../assets/shawals.jpg";
-import notebooks from "../../../assets/eco-friendly-notebooks.jpeg";
-import toothbrushes from "../../../assets/Bamboo-Toothbrush-Set.jpeg";
-import towels from "../../../assets/Organic Cotton Towels.jpg";
-import shoppingBags from "../../../assets/Reusable-Shopping-Bags.jpeg";
-import phoneCase from "../../../assets/Biodegradable-Phone-Case.jpeg";
-import journals from "../../../assets/Recycled-Paper-Journals.webp";
-import waterBottle from "../../../assets/Glass-Water-Bottle.webp";
-import teaSet from "../../../assets/Organic-Tea-Set.webp";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import Aside from "../../components/Aside/Aside";
+import ProductCard from "../../components/Dashboard/ProductCard";
+import Aside from "../../components/Dashboard/Aside";
 import Header from "../../components/Dashboard/Header";
 import SearchBar from "../../components/Dashboard/SearchBar";
-import SeeMore from "../../components/Buttons/SeeMore";
-import ViewLess from "../../components/Buttons/ViewLess";
+import SeeMore from "../../components/Dashboard/SeeMore";
+import ViewLess from "../../components/Dashboard/ViewLess";
 import Dropdown from "../../components/Dashboard/Dropdown";
+
+const placeholderImage = "https://via.placeholder.com/150";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -37,25 +27,25 @@ const Dashboard = () => {
 
   const initialProducts = [
     {
-      image: granola,
+      image: placeholderImage,
       title: "Snacker's Special Granola",
       price: 350,
       rating: 5,
     },
     {
-      image: cuttery,
+      image: placeholderImage,
       title: "Wooden Cutlery Set of 7",
       price: 1200,
       rating: 4,
     },
     {
-      image: basket,
+      image: placeholderImage,
       title: "Jute Cotton Basket",
       price: 399,
       rating: 4,
     },
     {
-      image: shawls,
+      image: placeholderImage,
       title: "Premium Woolen Shawls",
       price: 5000,
       rating: 5,
@@ -64,49 +54,49 @@ const Dashboard = () => {
 
   const moreProducts = [
     {
-      image: notebooks,
+      image: placeholderImage,
       title: "Eco-Friendly Notebook",
       price: 250,
       rating: 4,
     },
     {
-      image: toothbrushes,
+      image: placeholderImage,
       title: "Bamboo Toothbrush Set",
       price: 150,
       rating: 5,
     },
     {
-      image: towels,
+      image: placeholderImage,
       title: "Organic Cotton Towels",
       price: 600,
       rating: 4,
     },
     {
-      image: shoppingBags,
+      image: placeholderImage,
       title: "Reusable Shopping Bags",
       price: 300,
       rating: 5,
     },
     {
-      image: phoneCase,
+      image: placeholderImage,
       title: "Biodegradable Phone Case",
       price: 450,
       rating: 5,
     },
     {
-      image: journals,
+      image: placeholderImage,
       title: "Recycled Paper Journals",
       price: 200,
       rating: 4,
     },
     {
-      image: waterBottle,
+      image: placeholderImage,
       title: "Glass Water Bottle",
       price: 350,
       rating: 5,
     },
     {
-      image: teaSet,
+      image: placeholderImage,
       title: "Organic Tea Set",
       price: 750,
       rating: 5,
@@ -164,7 +154,7 @@ const Dashboard = () => {
       <Aside />
 
       {/* Main Content */}
-      <main className="flex-1 p-6 mt-20">
+      <main className="flex-1 p-6 mt-2">
         {/* Header */}
         <Header />
 

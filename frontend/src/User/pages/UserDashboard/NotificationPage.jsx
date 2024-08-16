@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Aside from '../../components/Aside/Aside'; // Adjust the path as necessary
+import Aside from '../../components/Dashboard/Aside'; // Adjust the path as necessary
 import SearchBar from "../../components/Dashboard/SearchBar"; // If you want a search bar
 import Header from "../../components/Dashboard/Header"; // If you have a header component
 
