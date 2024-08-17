@@ -20,7 +20,7 @@ app.use(cors({
   }));
 app.use(cookie())
 const port = process.env.PORT || 8000 ;
-mongooseConn(process.env.MONGO_URI)
+mongooseConn(process.env.MONGO_URI_LIVE)
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));

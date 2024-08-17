@@ -82,7 +82,7 @@ const ProductForm = () => {
         }
       );
   
-      if (response.status === 200) {
+      if (response.status === 201) {
         Swal.fire({
           title: "Success!",
           text: "Product has been created successfully.",

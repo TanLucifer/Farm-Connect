@@ -22,7 +22,7 @@ export const createProductController = async (req,res)=>{
         } = req.body;
         console.log(req.body);
         
-        const farmerId = "66be074e14caafd922277d4d"; 
+        const farmerId = "66c027754c16c10fdd259b01"; 
     
         // if (
         //   !SKU ||
