@@ -98,7 +98,9 @@ const ProductForm = () => {
         text: "Product has been created successfully.",
         icon: "success",
         confirmButtonText: "OK",
-      })
+      }).then(() => {
+        window.location.href = "http://localhost:5173/products";
+      });
       console.log(e);
     }
   }
