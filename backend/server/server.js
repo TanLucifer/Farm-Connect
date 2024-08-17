@@ -6,6 +6,7 @@ import createdAdmin from "../router/adminRouter.js"
 import productRouter from '../router/productRouter.js'
 import orderRouter from "../router/orderRouter.js"
 import cartRouter from "../router/cartRouter.js"
+import StripeRouter from "../stripe/stripe.js"
 import { mongooseConn } from "../config/mongo-connection.js";
 import cookie from 'cookie-parser'
 import cors from 'cors'
@@ -31,6 +32,7 @@ app.use("/api/admin",createdAdmin)
 app.use("/api/product",productRouter)
 app.use("/api/orders",orderRouter)
 app.use("/api/cart" ,cartRouter)
+app.use("/createPayment" , StripeRouter)
 
 app.listen(port,()=>{
     console.log(`Server running at port ${port}`);

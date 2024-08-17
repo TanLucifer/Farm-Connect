@@ -22,7 +22,9 @@
     "react-router": "^6.26.0",
     "react-router-dom": "^6.26.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.12.4"
+    "sweetalert2": "^11.12.4",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

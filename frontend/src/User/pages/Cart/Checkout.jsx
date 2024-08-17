@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { loadStripe } from '@stripe/stripe-js';
 import OrderSummary from "../../components/Cart/OrderSummary";
-import { Link } from "react-router-dom";
+
+// Initialize Stripe
+const stripePromise = loadStripe('pk_test_51KGLCTSFp516J086SXa8yiL4c4ibE2xAc3jehw3q3QHp5mU11dTwB0nhZ5lqgEqy1OuBaBJT3vM2TdqGWZ61wazs00ffhknKGa');
 
 const CheckoutForm = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +25,32 @@ const CheckoutForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const stripe = await stripePromise;
+const CartId = "66c04ceefe274c28ce430a80"
+      // Call your backend to create the Checkout Session
+      const response = await fetch(`http://localhost:3000/createPayment/create-checkout-session/${CartId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ /* Add any required data from formData here if needed */ }),
+      });
+
+      const session = await response.json();
+
+      // Redirect to Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network error, display the error to your customer.
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
   };
 
   return (
@@ -137,12 +163,11 @@ const CheckoutForm = () => {
           </div>
           <div className="w-full md:w-1/3">
             <OrderSummary />
-            <Link to="/">
-              <button
-                className="w-full bg-[#ebb207ff] text-white p-2 rounded  transition-colors duration-300">
-                Place Order
-              </button>
-            </Link>
+            <button
+              onClick={handleSubmit} // Call handleSubmit to initiate Stripe Checkout
+              className="w-full bg-[#ebb207ff] text-white p-2 rounded transition-colors duration-300">
+              Place Order
+            </button>
           </div>
         </div>
       </div>
