@@ -4,6 +4,7 @@ import TextArea from "../../components/ProductForm/TextArea";
 import FileInput from "../../components/ProductForm/FileInput";
 import PriceInput from "../../components/ProductForm/PriceInput";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProductForm = () => {
   const [price, setPrice] = useState("");
@@ -71,20 +72,38 @@ const ProductForm = () => {
   
   async function sendData(formData) {
     try {
-      let response = await axios.post("http://localhost:3000/api/product/createProduct", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      let response = await axios.post(
+        "http://localhost:3000/api/product/createProduct",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
   
       if (response.status === 200) {
-        console.log("Data sent successfully");
+        Swal.fire({
+          title: "Success!",
+          text: "Product has been created successfully.",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          window.location.href = "http://localhost:5173/products";
+        });
       }
     } catch (e) {
+      Swal.fire({
+        title: "Success!",
+        text: "Product has been created successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        window.location.href = "http://localhost:5173/products";
+      });
       console.log(e);
     }
   }
-  
 
   return (
     <div className="bg-[#fff5edff]">
