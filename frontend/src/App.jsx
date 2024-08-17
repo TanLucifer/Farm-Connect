@@ -26,6 +26,7 @@ import Profile from './User/pages/UserDashboard/ProfilePage';
 import DashboardNotifications  from './User/pages/UserDashboard/NotificationPage';
 import DashboardWishlist from './User/pages/UserDashboard/dashboard-wishlist';
 import FAQ from './User/pages/Faq/Faq';
+import Error from "./User/pages/Error/Error"
 // import ReturnPolicy from './User/pages/ReturnPolicy/ReturnPolicy';
 
 
@@ -45,7 +46,7 @@ const App = () => {
           <Route path="help" element={<Help />} />
           <Route path="products" element={<Products />} />
           <Route path="forgetpassword" element={<ForgetPassword />} />
-          <Route path="*" element={<Error />} /> {/* Catch-all for undefined routes */}
+          <Route path="*" element={<Error />} /> Catch-all for undefined routes
           <Route path="checkout" element={<Checkout/>} /> 
           <Route path="productDetails" element={<ProductDetails/>} /> 
           <Route path="contact" element={<Contact/>} /> 
@@ -60,7 +61,7 @@ const App = () => {
         </Route>
 
         {/* Admin Routes */}
-        <Route path="/admi" element={<AdminLayout />}>
+        <Route path="/" element={<AdminLayout />}>
           <Route index element={<AdminPanel />} />
           <Route path="adminauth" element={<AdminLogin />} /> 
           <Route path="productform" element={<ProductForm />} />

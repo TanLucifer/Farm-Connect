@@ -110,7 +110,7 @@ const SearchResults = () => {
                   <img
                     src={`http://localhost:3000/uploads/${product.productImage}`}
                     alt={product.productname}
-                    className="bg-green-100 h-40 mb-2 rounded object-cover w-full"
+                    className="bg-green-100 h-40 mb-2 rounded object-contain w-full"
                   />
                   <h3 className="font-bold text-[black]">{product.productname}</h3>
                   <p className="text-[#fffac4ff] font-semibold">
