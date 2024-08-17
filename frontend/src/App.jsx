@@ -13,7 +13,7 @@ import ForgetPassword from './User/pages/ForgetPassword/ForgetPassword';
 import AdminLayout from './Admin/AdminLayout';
 import AdminPanel from './Admin/Pages/Adminpanel';
 import AdminLogin from './Admin/Pages/AdminLogin';
-import ProductForm from './Admin/pages/ProductForm/ProductForm';
+import ProductForm from './Farmer/pages/ProductForm/ProductForm';
 import Registration from './Admin/Pages/Registration/Registration';
 import Checkout from './User/pages/Cart/Checkout';
 import Products from './User/pages/Products/Products';
@@ -67,7 +67,7 @@ const App = () => {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminPanel />} />
           <Route path="auth" element={<AdminLogin />} /> 
-          <Route path="productform" element={<ProductForm />} />
+          {/* <Route path="productform" element={<ProductForm />} /> */}
           <Route path="register" element={<Registration />} />
         </Route>
 
@@ -75,8 +75,8 @@ const App = () => {
         <Route path="/farmer" element={<FarmerLayout />}>
           <Route index element={<FarmerDashboard />} />
           <Route path="auth" element={<FarmerAuth/>} /> 
-          {/* <Route path="productform" element={<ProductForm />} />
-          <Route path="register" element={<Registration />} /> */}
+           <Route path="productform" element={<ProductForm />} />
+          {/* <Route path="register" element={<Registration />} /> */} 
         </Route>
 
       </Routes>
