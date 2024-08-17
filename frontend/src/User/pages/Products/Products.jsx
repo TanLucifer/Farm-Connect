@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import swal from 'sweetalert'; // Import SweetAlert1
+import { useNavigate } from 'react-router-dom';
 
 const SearchResults = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,8 @@ const SearchResults = () => {
   });
   const [wishlist, setWishlist] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [userId, setUserId] = useState(null); // State to store user ID
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,8 +23,7 @@ const SearchResults = () => {
         const response = await fetch('http://localhost:3000/api/product/getallproducts');
         if (response.ok) {
           const data = await response.json();
-          console.log('API Response:', data); 
-          setProducts(data.products || []); 
+          setProducts(data.products || []); // Adjust according to your API response
         } else {
           console.error('Failed to fetch products');
         }
@@ -29,10 +31,58 @@ const SearchResults = () => {
         console.error('Error:', error);
       }
     };
-  
+
     fetchProducts();
   }, []);
-  
+
+  const addToCart = async (productId) => {
+    try {
+      // Hardcoded userId and productId
+      const userId = "66c0432f63f1b267ddbb73c5"; // Your hardcoded userId
+      const response = await fetch('http://localhost:3000/api/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: userId,
+          productId: productId, // Use the productId passed as a parameter
+          quantity: 1, // Default quantity
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Added to cart:', data);
+        swal({
+          title: 'Success!',
+          text: 'Product added to cart!',
+          icon: 'success',
+          button: 'Go to Cart',
+        }).then((willGoToCart) => {
+          if (willGoToCart) {
+            navigate('/cart'); // Navigate to /cart
+          }
+        });
+      } else {
+        console.error('Failed to add to cart');
+        swal({
+          title: 'Error!',
+          text: 'Failed to add product to cart.',
+          icon: 'error',
+          button: 'Try Again',
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      swal({
+        title: 'Error!',
+        text: 'Error adding product to cart.',
+        icon: 'error',
+        button: 'Try Again',
+      });
+    }
+  };
 
   const toggleWishlist = (productId) => {
     setWishlist((prevWishlist) =>
@@ -117,11 +167,12 @@ const SearchResults = () => {
                     Current price: {product.currency} {product.productprice.toFixed(2)}
                   </p>
                   <p className="text-[#fffac4ff]">Stock: {product.stock}</p>
-                  <Link to='/cart'>
-                    <button className="mt-4 px-4 py-2 bg-[#fffac4ff] text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md">
-                      Add to Cart
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => addToCart(product._id)}
+                    className="mt-4 px-4 py-2 bg-[#fffac4ff] text-green-800 rounded-full hover:bg-yellow-400 transition-colors font-semibold shadow-md"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               ))}
             </div>

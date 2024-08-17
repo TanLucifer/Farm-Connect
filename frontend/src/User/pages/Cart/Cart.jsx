@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import tomato from '../../../assets/tomato.jpg';
-import lemon from '../../../assets/lemon.jpeg';
-import garlic from '../../../assets/garlic.jpeg';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import swal from 'sweetalert'; // Import SweetAlert
 
-const CartItem = ({ name, price, image, description, onQuantityChange }) => {
-  const [quantity, setQuantity] = useState(1);
-
+const CartItem = ({ product, price, quantity, onQuantityChange }) => {
   const handleQuantityChange = (change) => {
     const newQuantity = Math.max(1, quantity + change);
-    setQuantity(newQuantity);
     onQuantityChange(newQuantity);
   };
 
   return (
     <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 bg-white p-6 rounded-lg shadow-md">
       <div className="w-full md:w-32 h-32 bg-gray-300 rounded-md flex-shrink-0">
-        <img src={image} alt={name} className="w-full h-full object-cover rounded-md" />
+        <img 
+          src={`http://localhost:3000/uploads/${product.productImage}`} 
+          alt={product.productname} 
+          className="w-full h-full object-cover rounded-md" 
+          onError={(e) => { }} // Fallback image in case of error
+        />
       </div>
       <div className="flex-grow">
-        <p className="font-semibold text-xl text-yellow-900">{name}</p>
-        <p className="text-yellow-700">{description}</p>
+        <p className="font-semibold text-xl text-yellow-900">{product.productname}</p>
+        <p className="text-yellow-700">{product.productdescription}</p>
       </div>
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
@@ -35,19 +35,53 @@ const CartItem = ({ name, price, image, description, onQuantityChange }) => {
 };
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: "Tomato", price: 99, image: tomato, description: "Fresh and organic tomatoes." },
-    { id: 2, name: "Lemon", price: 149, image: lemon, description: "Juicy and ripe lemons." },
-    { id: 3, name: "Garlic", price: 199, image: garlic, description: "Aromatic and flavorful garlic." },
-  ]);
-
+  const [items, setItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/cart/getcart/66c0432f63f1b267ddbb73c5');
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Fetched Cart Data: ", data); 
+          const cartItems = data.cart.items || []; // Ensure cartItems is an array
+          setItems(cartItems);
+
+          const initialQuantities = cartItems.reduce((acc, item) => {
+            acc[item._id] = item.quantity || 1; // Default quantity to 1 if undefined
+            return acc;
+          }, {});
+
+          setQuantities(initialQuantities);
+        } else {
+          console.error('Failed to fetch cart items');
+          swal({
+            title: 'Error!',
+            text: 'Failed to fetch cart items.',
+            icon: 'error',
+            button: 'OK',
+          });
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        swal({
+          title: 'Error!',
+          text: 'Error fetching cart items.',
+          icon: 'error',
+          button: 'OK',
+        });
+      }
+    };
+
+    fetchCartItems();
+  }, []);
 
   const handleQuantityChange = (id, quantity) => {
     setQuantities(prev => ({ ...prev, [id]: quantity }));
   };
 
-  const subtotal = items.reduce((sum, item) => sum + item.price * (quantities[item.id] || 1), 0);
+  const subtotal = items.reduce((sum, item) => sum + item.price * (quantities[item._id] || 1), 0);
   const shipping = 10;
   const tax = subtotal * 0.1;
   const total = subtotal + shipping + tax;
@@ -61,12 +95,11 @@ const Cart = () => {
         <div className="space-y-6">
           {items.map((item) => (
             <CartItem 
-              key={item.id} 
-              name={item.name} 
+              key={item._id} 
+              product={item.product} 
               price={item.price}
-              image={item.image}
-              description={item.description}
-              onQuantityChange={(quantity) => handleQuantityChange(item.id, quantity)}
+              quantity={quantities[item._id] || 1}
+              onQuantityChange={(quantity) => handleQuantityChange(item._id, quantity)}
             />
           ))}
         </div>
@@ -104,9 +137,11 @@ const Cart = () => {
             <span>I agree to the Terms of Service</span>
           </label>
           
-          <Link to="/checkout" ><button className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300">
-            Proceed to Checkout
-          </button></Link>
+          <Link to="/checkout">
+            <button className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300">
+              Proceed to Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>
