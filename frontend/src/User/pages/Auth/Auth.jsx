@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2'; 
-import illustration from "../../../assets/home_ill.png"
+import Swal from 'sweetalert2';
+import illustration from "../../../assets/home_ill.png";
+
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,12 +42,12 @@ const AuthForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-        credentials:'include'
+        credentials: 'include'
       });
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token); // Save token to local storage
+        localStorage.setItem('token', data.token);
         Swal.fire({
           icon: 'success',
           title: isLogin ? 'Login Successful!' : 'Signup Successful!',
@@ -55,7 +56,7 @@ const AuthForm = () => {
           showConfirmButton: false
         });
         navigate('/');
-        window.location.reload() // Redirect to the home route on success
+        window.location.reload();
       } else {
         const errorData = await response.json();
         console.error('Error:', errorData.message);
@@ -80,28 +81,35 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden mt-[15vh]">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 md:px-0">
+      <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden mt-[10vh] md:mt-[15vh]">
         
         {/* Illustration Card */}
-        <div className="lg:w-1/2 bg-[#1a2226ff] p-10 flex items-center justify-center">
-          <img src={illustration} alt="Illustration" className="w-3/4 h-3/4 object-contain" />
+        <div className="lg:w-1/2 bg-[#1a2226ff] p-6 md:p-10 flex items-center justify-center">
+          <img
+            src={illustration}
+            alt="Illustration"
+            className="w-full h-full object-contain"
+          />
         </div>
 
         {/* Form Card */}
-        <div className="lg:w-1/2 p-10">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        <div className="lg:w-1/2 p-6 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
             {isLogin ? 'Login' : 'Sign Up'}
           </h2>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
             {!isLogin && (
               <div>
-                <label className="block text-sm font-medium text-gray-700" htmlFor="username">
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="username"
+                >
                   Username
                 </label>
                 <input
-                  className="w-full mt-1 px-4 py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full mt-1 px-4 py-2 md:py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                   type="text"
                   id="username"
                   placeholder="John123"
@@ -113,11 +121,14 @@ const AuthForm = () => {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+              <label
+                className="block text-sm font-medium text-gray-700"
+                htmlFor="email"
+              >
                 Email Address
               </label>
               <input
-                className="w-full mt-1 px-4 py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full mt-1 px-4 py-2 md:py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 type="email"
                 id="email"
                 placeholder="example@example.com"
@@ -128,11 +139,14 @@ const AuthForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700" htmlFor="password">
+              <label
+                className="block text-sm font-medium text-gray-700"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
-                className="w-full mt-1 px-4 py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full mt-1 px-4 py-2 md:py-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 type="password"
                 id="password"
                 placeholder="********"
@@ -143,7 +157,7 @@ const AuthForm = () => {
             </div>
 
             <button
-              className={`w-full py-3 mt-4 ${isLoading ? 'bg-gray-400' : 'bg-[#1a2226ff]'} text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition duration-200`}
+              className={`w-full py-2 md:py-3 mt-4 ${isLoading ? 'bg-gray-400' : 'bg-[#1a2226ff]'} text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition duration-200`}
               type="submit"
               disabled={isLoading}
             >
@@ -157,7 +171,7 @@ const AuthForm = () => {
             </div>
           )}
 
-          <div className="mt-8 text-center">
+          <div className="mt-6 md:mt-8 text-center">
             <p className="text-sm text-gray-600">
               {isLogin ? "Don't have an account?" : 'Already have an account?'}
               <button

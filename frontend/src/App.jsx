@@ -26,6 +26,7 @@ import Profile from './User/pages/UserDashboard/ProfilePage';
 import DashboardNotifications  from './User/pages/UserDashboard/NotificationPage';
 import DashboardWishlist from './User/pages/UserDashboard/dashboard-wishlist';
 import FAQ from './User/pages/Faq/Faq';
+import Confirm from './User/pages/Confirm/Confirm';
 import Error from "./User/pages/Error/Error"
 import ReturnPolicy from './User/pages/ReturnPolicy/ReturnPolicy';
 import FarmerLayout from './Farmer/FarmerLayout';
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="order" element={<ProtectedRoute element={<Order />} />} />
           <Route path="orderStatus" element={<ProtectedRoute element={<OrderStatus />} />} />
           <Route path="help" element={<Help />} />
+          <Route path="confirm" element={<Confirm />} />
           <Route path="products" element={<Products />} />
           <Route path="forgetpassword" element={<ForgetPassword />} />
           <Route path="*" element={<Error />} /> Catch-all for undefined routes
