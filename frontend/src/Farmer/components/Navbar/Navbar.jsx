@@ -12,11 +12,11 @@ const Navbar = () => {
             
           </a>
         </div>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-2 md:mb-0">
+        {/* <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-2 md:mb-0">
           <a href="#" className="text-white hover:text-gray-400">Home</a>
           <a href="#" className="text-white hover:text-gray-400">About</a>
           <a href="#" className="text-white hover:text-gray-400">Contact</a>
-        </div>
+        </div> */}
         <div className="space-x-4">
           <a href="#" className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Login</a>
         </div>

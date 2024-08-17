@@ -76,7 +76,7 @@ const App = () => {
           <Route index element={<FarmerDashboard />} />
           <Route path="auth" element={<FarmerAuth/>} /> 
            <Route path="productform" element={<ProductForm />} />
-          {/* <Route path="register" element={<Registration />} /> */} 
+          <Route path="dashboard" element={<FarmerDashboard />} /> 
         </Route>
 
       </Routes>
