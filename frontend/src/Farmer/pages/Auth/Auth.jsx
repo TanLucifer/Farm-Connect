@@ -24,60 +24,62 @@ const AuthForm = () => {
       [e.target.id]: e.target.value
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setIsError(false);
 
     try {
-      const url = isLogin
-        ? 'http://localhost:3000/api/user/auth/login'
-        : 'http://localhost:3000/api/user/auth/signup';
+        const url = isLogin
+            ? 'http://localhost:3000/api/farmer/auth/login' // Update URL for farmer login
+            : 'http://localhost:3000/api/farmer/auth/signup';
 
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials:'include'
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('token', data.token); // Save token to local storage
-        Swal.fire({
-          icon: 'success',
-          title: isLogin ? 'Login Successful!' : 'Signup Successful!',
-          text: 'Redirecting to home...',
-          timer: 1500,
-          showConfirmButton: false
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: formData.email,
+                password: formData.password
+            }),
+            credentials: 'include',
         });
-        navigate('/');
-        window.location.reload() // Redirect to the home route on success
-      } else {
-        const errorData = await response.json();
-        console.error('Error:', errorData.message);
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('token', data.token); // Save token to local storage
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful!',
+                text: 'Redirecting to home...',
+                timer: 1500,
+                showConfirmButton: false
+            });
+            navigate('/');
+            window.location.reload(); // Redirect to the home route on success
+        } else {
+            const errorData = await response.json();
+            console.error('Error:', errorData.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errorData.message
+            });
+            setIsError(true);
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
         Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: errorData.message
+            icon: 'error',
+            title: 'Error',
+            text: 'Something went wrong. Please try again.'
         });
         setIsError(true);
-      }
-    } catch (error) {
-      console.error('Error:', error.message);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Something went wrong. Please try again.'
-      });
-      setIsError(true);
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  };
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
