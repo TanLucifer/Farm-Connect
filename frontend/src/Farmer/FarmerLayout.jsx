@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from '../User/components/Footer/Footer';
 
-const FarmerLayout = () => {
+const AdminLayout = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
-export default FarmerLayout;
+export default AdminLayout;
