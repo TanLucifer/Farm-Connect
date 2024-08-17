@@ -51,11 +51,11 @@ const AdminPanel = () => {
         <div className="min-h-screen bg-gray-100 ">
            
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
-                <div className="flex flex-col sm:flex-row justify-between mb-6 mt-[20vh]">
+                <div className="flex flex-col sm:flex-row justify-between mb-6 mt-[8vh]">
                     <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                     <div className="flex space-x-2">
-                        <Link to="/admin/vigy_form" >
-                        <button onClick={() => setShowAddModal(true)} className="bg-blue-500 text-white px-4 py-2 rounded">+ Add New Vigy</button></Link>
+                        <Link to="/farmer/productform" >
+                        <button onClick={() => setShowAddModal(true)} className="bg-blue-500 text-white px-4 py-2 rounded">+ Add New Farmer</button></Link>
                         <ExportButton 
                             showExportOptions={showExportOptions} 
                             setShowExportOptions={setShowExportOptions} 

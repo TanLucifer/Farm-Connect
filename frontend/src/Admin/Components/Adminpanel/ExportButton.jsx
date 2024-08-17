@@ -6,22 +6,22 @@ import 'jspdf-autotable';
 const ExportButton = ({ showExportOptions, setShowExportOptions, filteredData }) => {
     const exportToCSV = () => {
         const csvContent = [
-            ['Vigy ID', 'Full Name', 'Total Product', 'Sell Product', 'Pending Product', 'Return Order', 'Total Income'],
+            ['Farmer ID', 'Full Name', 'Total Product', 'Sell Product', 'Pending Product', 'Return Order', 'Total Income'],
             ...filteredData.map(row => [row.id, row.name, row.totalProduct, row.sellProduct, row.pendingProduct, row.returnOrder, row.totalIncome])
         ].map(e => e.join(",")).join("\n");
 
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        saveAs(blob, "vigy_data.csv");
+        saveAs(blob, "Farmer_data.csv");
         setShowExportOptions(false);
     };
 
     const exportToPDF = () => {
         const doc = new jsPDF();
         doc.autoTable({
-            head: [['Vigy ID', 'Full Name', 'Total Product', 'Sell Product', 'Pending Product', 'Return Order', 'Total Income']],
+            head: [['Farmer ID', 'Full Name', 'Total Product', 'Sell Product', 'Pending Product', 'Return Order', 'Total Income']],
             body: filteredData.map(row => [row.id, row.name, row.totalProduct, row.sellProduct, row.pendingProduct, row.returnOrder, row.totalIncome]),
         });
-        doc.save("vigy_data.pdf");
+        doc.save("Farmer_data.pdf");
         setShowExportOptions(false);
     };
 
