@@ -97,18 +97,18 @@ This project was developed as part of the Vidyalankar Polytechnic Internal Hacka
 
 ### Contributors
 - <a href="https://github.com/TanLucifer" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/178185038?v=4&s=40" alt="TanLucifer" style="border-radius: 50%; width: 40px; height: 40px;"/>
+                    <img src="https://avatars.githubusercontent.com/u/178185038?v=4&s=40" alt="TanLucifer" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #ddd; margin-right: 8px;"/>
                  </a> 
                  [TanLucifer](https://github.com/TanLucifer)
 - <a href="https://github.com/Aditya6273" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/91383604?v=4&s=40" alt="Aditya6273" style="border-radius: 50%; width: 40px; height: 40px;"/>
+                    <img src="https://avatars.githubusercontent.com/u/91383604?v=4&s=40" alt="Aditya6273" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #ddd; margin-right: 8px;"/>
                  </a> 
                  [Aditya6273](https://github.com/Aditya6273)
 - <a href="https://github.com/renoschubert" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/46114615?v=4&s=40" alt="renoschubert" style="border-radius: 50%; width: 40px; height: 40px;"/>
+                    <img src="https://avatars.githubusercontent.com/u/46114615?v=4&s=40" alt="renoschubert" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #ddd; margin-right: 8px;"/>
                  </a> 
                  [renoschubert](https://github.com/renoschubert)
 - <a href="https://github.com/ashlesh-kadam" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/178250428?v=4&s=40" alt="ashlesh-kadam" style="border-radius: 50%; width: 40px; height: 40px;"/>
+                    <img src="https://avatars.githubusercontent.com/u/178250428?v=4&s=40" alt="ashlesh-kadam" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #ddd; margin-right: 8px;"/>
                  </a> 
                  [ashlesh-kadam](https://github.com/ashlesh-kadam)
