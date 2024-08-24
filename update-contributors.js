@@ -1,45 +1,61 @@
-const fs = require('fs');
-const axios = require('axios');
 
-// URL to fetch contributors from GitHub API
-const contributorsUrl = 'https://api.github.com/repos/TanLucifer/Farm-Connect/contributors';
+import fs from "fs";
+import axios from "axios";
+
+// GitHub API URL to fetch contributors
+const CONTRIBUTORS_API_URL = 'https://api.github.com/repos/TanLucifer/Farm-Connect/contributors';
 
 // Path to your README file
-const readmePath = './README.md';
+const README_PATH = './README.md';
 
+// Function to fetch contributors from GitHub
+async function fetchContributors() {
+  try {
+    const response = await axios.get(CONTRIBUTORS_API_URL);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching contributors:', error);
+    throw error;
+  }
+}
+
+// Function to generate contributors markdown
+function generateContributorsMarkdown(contributors) {
+  let markdown = '### Contributors\n';
+  contributors.forEach(contributor => {
+    markdown += `- ![${contributor.login}](${contributor.avatar_url}) [${contributor.login}](https://github.com/${contributor.login})\n`;
+  });
+  return markdown;
+}
+
+// Function to update README file
 async function updateReadme() {
   try {
-    // Fetch contributors data
-    const response = await axios.get(contributorsUrl);
-    const contributors = response.data;
+    const contributors = await fetchContributors();
+    const contributorsMarkdown = generateContributorsMarkdown(contributors);
 
-    // Generate markdown for contributors
-    let contributorsMarkdown = '### Contributors\n';
-    contributors.forEach(contributor => {
-      contributorsMarkdown += `- ![${contributor.login}](${contributor.avatar_url}) [${contributor.login}](https://github.com/${contributor.login})\n`;
-    });
+    // Read the existing README content
+    let readmeContent = fs.readFileSync(README_PATH, 'utf8');
 
-    // Read the existing README file
-    let readmeContent = fs.readFileSync(readmePath, 'utf8');
-
-    // Check if Contributors section exists and update it
+    // Regex to find the existing Contributors section
     const contributorsSectionRegex = /### Contributors[\s\S]*?(?=\n##|$)/;
+
     let updatedReadmeContent;
-    
     if (contributorsSectionRegex.test(readmeContent)) {
+      // Update the existing Contributors section
       updatedReadmeContent = readmeContent.replace(contributorsSectionRegex, contributorsMarkdown);
     } else {
+      // Append the Contributors section if it doesn't exist
       updatedReadmeContent = readmeContent + '\n' + contributorsMarkdown;
     }
 
-    // Write the updated content to README
-    fs.writeFileSync(readmePath, updatedReadmeContent, 'utf8');
-
+    // Write the updated content back to the README file
+    fs.writeFileSync(README_PATH, updatedReadmeContent, 'utf8');
     console.log('README file updated successfully with contributors.');
   } catch (error) {
     console.error('Error updating README file:', error);
   }
 }
 
+// Run the update function
 updateReadme();
-
