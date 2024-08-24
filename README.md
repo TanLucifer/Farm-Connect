@@ -96,7 +96,7 @@ This project was developed as part of the Vidyalankar Polytechnic Internal Hacka
 
 
 ### Contributors
-- ![TanLucifer](https://avatars.githubusercontent.com/u/178185038?v=4) [TanLucifer](https://github.com/TanLucifer)
-- ![Aditya6273](https://avatars.githubusercontent.com/u/91383604?v=4) [Aditya6273](https://github.com/Aditya6273)
-- ![renoschubert](https://avatars.githubusercontent.com/u/46114615?v=4) [renoschubert](https://github.com/renoschubert)
-- ![ashlesh-kadam](https://avatars.githubusercontent.com/u/178250428?v=4) [ashlesh-kadam](https://github.com/ashlesh-kadam)
+- [![TanLucifer](https://avatars.githubusercontent.com/u/178185038?v=4&s=40)](https://github.com/TanLucifer) [TanLucifer](https://github.com/TanLucifer)
+- [![Aditya6273](https://avatars.githubusercontent.com/u/91383604?v=4&s=40)](https://github.com/Aditya6273) [Aditya6273](https://github.com/Aditya6273)
+- [![renoschubert](https://avatars.githubusercontent.com/u/46114615?v=4&s=40)](https://github.com/renoschubert) [renoschubert](https://github.com/renoschubert)
+- [![ashlesh-kadam](https://avatars.githubusercontent.com/u/178250428?v=4&s=40)](https://github.com/ashlesh-kadam) [ashlesh-kadam](https://github.com/ashlesh-kadam)

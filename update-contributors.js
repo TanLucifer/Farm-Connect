@@ -23,7 +23,7 @@ async function fetchContributors() {
 function generateContributorsMarkdown(contributors) {
   let markdown = '### Contributors\n';
   contributors.forEach(contributor => {
-    markdown += `- ![${contributor.login}](${contributor.avatar_url}) [${contributor.login}](https://github.com/${contributor.login})\n`;
+    markdown += `- [![${contributor.login}](${contributor.avatar_url}&s=40)](https://github.com/${contributor.login}) [${contributor.login}](https://github.com/${contributor.login})\n`;
   });
   return markdown;
 }
