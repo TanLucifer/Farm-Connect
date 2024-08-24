@@ -24,7 +24,7 @@ function generateContributorsMarkdown(contributors) {
   let markdown = '### Contributors\n';
   contributors.forEach(contributor => {
     markdown += `<a href="https://github.com/${contributor.login}" target="_blank">
-                    <img src="${contributor.avatar_url}&s=40" alt="${contributor.login}" style="border-radius: 100%; width: 40px; height: 40px; border: 2px solid #ddd; margin-right: 8px;"/>
+                    <img src="${contributor.avatar_url}&s=40" alt="${contributor.login}" style="border-radius: 500%; width: 40px; height: 40px; border: 2px solid white; margin-right: 8px;"/>
                  </a> 
                 `;
   });
