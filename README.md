@@ -7,6 +7,15 @@
 ## Overview
 **Farm-Connect** is a platform developed as part of the Vidyalankar Polytechnic Internal Hackathon. The primary objective of this project is to empower farmers by providing them with a direct marketplace to sell their products to potential buyers. By eliminating middlemen, **Farm-Connect** ensures that farmers receive a fair price for their produce, thereby increasing their income and supporting sustainable agriculture.
 
+Desktop Mode :- 
+![Screenshot (594)](https://github.com/user-attachments/assets/f8428290-3620-4355-9ff1-48207c567b9f)     Mobile Mode :-
+
+
+![Screenshot (595)](https://github.com/user-attachments/assets/9278e5f2-1b32-4e4f-b05b-7f3013a1bdc5)
+
+
+
+
 ## Problem Statement
 The platform addresses the problem of limited market access and low income for farmers by connecting them directly with buyers. This helps in:
 - Reducing the exploitation of farmers by intermediaries.
