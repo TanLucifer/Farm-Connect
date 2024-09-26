@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.3.0",
     "axios": "^1.7.4",
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "lord-icon-element": "^4.1.2",
+    "lucide-react": "^0.439.0",
     "mdb-react-ui-kit": "^8.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,9 +25,7 @@
     "react-router": "^6.26.0",
     "react-router-dom": "^6.26.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.12.4",
-    "@stripe/react-stripe-js": "^2.8.0",
-    "@stripe/stripe-js": "^4.3.0"
+    "sweetalert2": "^11.12.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

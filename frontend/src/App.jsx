@@ -32,6 +32,7 @@ import ReturnPolicy from './User/pages/ReturnPolicy/ReturnPolicy';
 import FarmerLayout from './Farmer/FarmerLayout';
 import FarmerAuth from './Farmer/pages/Auth/Auth';
 import FarmerDashboard  from './Farmer/pages/FarmerDashboard/FarmerDashboard';
+import FreelancePortal from './User/pages/free/Free';
 
 
 // Main App Component
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="dashboard-wishlist" element={<DashboardWishlist/>} /> 
           <Route path="faq" element={< FAQ/>} /> 
           <Route path="return" element={<ReturnPolicy/>} /> 
+          <Route path="free" element={<FreelancePortal/>} /> 
         </Route>
 
         {/* Admin Routes */}
